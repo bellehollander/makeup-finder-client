@@ -6,6 +6,8 @@ import { AdminMessage } from "./youarean";
 import { ViewUsers } from "../users/UserList";
 import { TipList } from "../tips/TipList";
 import { CreateTips } from "../tips/CreateTip";
+import { ProductList } from "../products/ProductList";
+import { ProductForm } from "../products/CreateProduct";
 
 export const AdminViews = ({ token, setToken, setAdmin }) => {
   return (
@@ -24,6 +26,8 @@ export const AdminViews = ({ token, setToken, setAdmin }) => {
         <Route path="/userList" element={<ViewUsers />} />
         <Route path="/tipManager" element={<TipList />} />
         <Route path="/createTip" element={<CreateTips />} />
+        <Route path="/productManager" element={<ProductList />} />
+        <Route path="/createProduct" element={<ProductForm />} />
       </Routes>
     </>
   );
