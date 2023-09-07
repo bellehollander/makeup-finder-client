@@ -20,3 +20,14 @@ export const CreateTip = (newTip) => {
     body: JSON.stringify(newTip),
   }).then((res) => res.json());
 };
+
+export const DeleteTip = (tipId) => {
+  return fetch(`http://localhost:8000/tips/${tipId}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `Token ${localStorage.getItem("auth_token")}`,
+    },
+  });
+};
