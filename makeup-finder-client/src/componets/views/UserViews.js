@@ -4,6 +4,8 @@ import { Register } from "../auth/Register";
 import { Authorized } from "./Authorized";
 import { UserHome } from "../UserProfile.js/UserHome";
 import { Profile } from "../UserProfile.js/CreateProfile";
+import { UserProductList } from "../products/UserProductList";
+import { UserTipList } from "../tips/userTipList";
 
 export const UserViews = ({ token, setToken, isAdmin, setAdmin }) => {
   return (
@@ -20,6 +22,8 @@ export const UserViews = ({ token, setToken, isAdmin, setAdmin }) => {
         <Route element={<Authorized token={token} />} />
         <Route path="/" element={<UserHome token={token} />} />
         <Route path="/Profile/:id" element={<Profile />} />
+        <Route path="/products" element={<UserProductList token={token} />} />
+        <Route path="/tips" element={<UserTipList />} />
       </Routes>
     </>
   );

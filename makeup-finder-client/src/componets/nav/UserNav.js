@@ -22,6 +22,12 @@ export const UserNav = ({ token, setToken, isAdmin }) => {
               <Link to="/Profile/:id" className="navbar-item">
                 Profile
               </Link>
+              <Link to="/products" className="navbar-item">
+                Products for you
+              </Link>
+              <Link to="/tips" className="navbar-item">
+                Tips for you
+              </Link>
             </>
           ) : (
             ""
