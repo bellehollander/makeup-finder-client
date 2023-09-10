@@ -37,6 +37,7 @@ export const ProductList = () => {
             >
               Delete
             </button>
+            <Link to={`/products/${product.id}`}>Edit</Link>
           </div>
         ))}
         <Link to="/createProduct"> Create a Product!</Link>

@@ -19,8 +19,8 @@ export const UserNav = ({ token, setToken, isAdmin }) => {
         <div className="navbar-start">
           {token ? (
             <>
-              <Link to="/productManager" className="navbar-item">
-                Product Manager
+              <Link to="/Profile/:id" className="navbar-item">
+                Profile
               </Link>
             </>
           ) : (

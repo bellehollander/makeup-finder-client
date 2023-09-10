@@ -52,3 +52,26 @@ export const GetAllPrefrences = () => {
     },
   }).then((res) => res.json());
 };
+
+export const EditProduct = (product) => {
+  return fetch(`http://localhost:8000/products/${product.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `Token ${localStorage.getItem("auth_token")}`,
+    },
+    body: JSON.stringify(product),
+  });
+};
+
+export const getProductById = (productId) => {
+  return fetch(`http://localhost:8000/products/${productId}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `Token ${localStorage.getItem("auth_token")}`,
+    },
+  }).then((res) => res.json());
+};

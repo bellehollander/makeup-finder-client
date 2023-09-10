@@ -8,6 +8,7 @@ import { TipList } from "../tips/TipList";
 import { CreateTips } from "../tips/CreateTip";
 import { ProductList } from "../products/ProductList";
 import { ProductForm } from "../products/CreateProduct";
+import { EditProductForm } from "../products/EditProduct";
 
 export const AdminViews = ({ token, setToken, setAdmin }) => {
   return (
@@ -28,6 +29,7 @@ export const AdminViews = ({ token, setToken, setAdmin }) => {
         <Route path="/createTip" element={<CreateTips />} />
         <Route path="/productManager" element={<ProductList />} />
         <Route path="/createProduct" element={<ProductForm />} />
+        <Route path="/products/:id" element={<EditProductForm />} />
       </Routes>
     </>
   );
