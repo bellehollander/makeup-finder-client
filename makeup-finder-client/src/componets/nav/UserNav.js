@@ -28,6 +28,9 @@ export const UserNav = ({ token, setToken, isAdmin }) => {
               <Link to="/tips" className="navbar-item">
                 Tips for you
               </Link>
+              <Link to="/wishlist" className="navbar-item">
+                Wish List
+              </Link>
             </>
           ) : (
             ""
