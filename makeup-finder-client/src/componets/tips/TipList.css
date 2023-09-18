@@ -1,0 +1,63 @@
+/* TipList.css */
+
+/* Container styles */
+.tips-container {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(300px, 1fr)
+  ); /* Responsive grid */
+  gap: 70px; /* Spacing between tips */
+  justify-content: center; /* Center the tips */
+}
+
+.tip-header {
+  color: #ff1493;
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+/* Tip card styles */
+.tip-card {
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 100%; /* Adjust the width as needed */
+  background-color: lavenderblush;
+  text-align: center;
+}
+
+.tip-card h2 {
+  font-size: 24px;
+  color: #ff1493; /* Pink color for tip title */
+  margin: 0;
+}
+
+.tip-card p {
+  font-size: 16px;
+  color: #333; /* Dark gray color for description */
+  margin: 10px 0;
+}
+
+.tip-card .skill-level {
+  font-size: 18px;
+  color: #ff1493; /* Pink color for skill level */
+  margin-top: 10px;
+}
+
+.tip-card .delete-button {
+  background-color: #ff1493; /* Pink color for delete button */
+  color: #fff; /* White text color */
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+}
+
+.tip-card .delete-button:hover {
+  background-color: #ff006e; /* Darker pink color on hover */
+}

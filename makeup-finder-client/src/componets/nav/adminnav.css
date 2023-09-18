@@ -1,0 +1,75 @@
+.navbar.is-success {
+  background-color: transparent; /* Transparent background */
+  border-bottom: none; /* Remove the bottom border */
+  padding: 10px 0;
+}
+
+/* Style the "Makeup-Finder" title */
+.title.is-4 {
+  color: #ff1493; /* Pink text color */
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
+}
+/* want no background color for the title when hovering */
+
+/* Style the links and buttons in the navigation bar */
+.navbar-item,
+.button {
+  font-weight: bold;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 25px; /* Rounded corners */
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin: 0 10px; /* Add spacing between items */
+  color: black;
+
+  /* get the navbar in a row in the center  with each item side by side */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Change link/button color and background on hover */
+.navbar-item:hover,
+.button:hover {
+  /* Pink background color on hover */
+  color: #ff1493; /* White text color on hover */
+}
+
+/* Change link color and background on hover */
+.navbar-item:hover {
+  /* Pink background color on hover */
+  color: #ff1493; /* White text color on hover */
+}
+
+/* Style the logout button */
+.button.is-outlined {
+  border-color: #ff1493; /* Pink border color */
+  color: #ff1493; /* Pink text color */
+  font-weight: bold;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 25px; /* Rounded corners */
+  cursor: pointer;
+  background-color: #ff1493;
+  color: white;
+}
+
+/* Change the logout button color on hover */
+.button.is-outlined:hover {
+  color: white; /* White text color on hover */
+}
+
+/* Center the links */
+.navbar-start {
+  flex: 1; /* Grow to fill available space */
+  display: flex;
+  justify-content: center; /* Center items horizontally */
+}
+
+/* Push the logout button to the end */
+.navbar-end {
+  margin-left: auto;
+}

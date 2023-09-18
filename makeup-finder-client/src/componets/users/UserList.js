@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { getAllUsers } from "../../managers/UserManager";
+import "./ViewUsers.css";
 
 export const ViewUsers = () => {
   const [users, setUsers] = useState([]);
@@ -17,11 +18,13 @@ export const ViewUsers = () => {
   return (
     <>
       <h1>Users</h1>
-      <table className="table table-striped">
+      <table className="user-table">
         <thead>
           <tr>
             <th>First Name</th>
             <th>Last Name</th>
+            <th>Email</th>
+            <th>Makeup Skill</th>
           </tr>
         </thead>
         <tbody>

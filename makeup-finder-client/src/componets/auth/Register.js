@@ -5,20 +5,23 @@ import { registerUser } from "../../managers/AuthManager";
 
 export const Register = ({ setToken, setAdmin }) => {
   const firstName = useRef();
+  // use refs to get the values from the form
   const lastName = useRef();
   const email = useRef();
   const username = useRef();
   const password = useRef();
   const account_type = useRef();
   const verifyPassword = useRef();
+  // set up state to handle if the passwords do not match
   const [showPasswordDialog, setShowDialog] = useState(false);
   const navigate = useNavigate();
-  // handle register function isnt logging in the user
-  // after registering
+
   const handleRegister = (e) => {
     e.preventDefault();
-
+    // check if the passwords match
     if (password.current.value === verifyPassword.current.value) {
+      // if they match create a new user object
+      // using current.value to get the value from the form
       const newUser = {
         username: username.current.value,
         first_name: firstName.current.value,
@@ -27,15 +30,19 @@ export const Register = ({ setToken, setAdmin }) => {
         password: password.current.value,
         account_type: account_type.current.value,
       };
-
+      // pass the new user to the registerUser function
       registerUser(newUser).then((res) => {
+        // check if the response is valid
         if ("valid" in res && res.valid) {
+          // set the token and admin state
           setToken(res.token);
           setAdmin(res.staff);
+          // navigate to the home page
           navigate("/");
         }
       });
     } else {
+      // if the passwords do not match set the showPasswordDialog state to true
       setShowDialog(true);
     }
   };

@@ -1,0 +1,84 @@
+/* userHome.css */
+
+.userHome {
+  text-align: center;
+  padding: 20px;
+}
+
+.welcome-makeup-finder {
+  font-size: 2.5rem;
+  color: #ff1493; /* Pink color for title */
+}
+
+.user-welcome {
+  font-size: 2rem;
+  margin-top: 20px;
+  color: #333; /* Dark gray color for welcome message */
+}
+
+.about {
+  font-size: 1.2rem;
+  margin-top: 20px;
+  color: #555; /* Slightly darker gray color for description */
+}
+
+/* Loading animation */
+.loading {
+  font-size: 1.5rem;
+  margin-top: 20px;
+  color: #ff1493;
+  animation: pulse 1s infinite; /* Add a subtle pulse animation */
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+/* Profile form styles */
+form {
+  margin-top: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  font-size: 1.2rem;
+  color: #ff1493;
+  display: block;
+}
+
+/* Select input styles */
+select {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  color: #333;
+}
+
+/* Save button styles */
+.btn {
+  background-color: #ff1493;
+  color: white;
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #ff006e; /* Darker pink on hover */
+}

@@ -4,52 +4,56 @@ import { useState, useEffect } from "react";
 import { getAllUsers } from "../../managers/UserManager";
 import { useNavigate } from "react-router-dom";
 import { CreateProfile, GetMakeupSkills } from "../../managers/SkillManager";
+import "./userHome.css";
 
 export const UserHome = ({ token }) => {
+  // set up inital state for current user
   const [currentUser, setCurrentUser] = useState(0);
+  // set up inital state for makeup skills
   const [makeupSkills, setMakeupSkills] = useState([]);
   const navigate = useNavigate();
-
+  // set up inital state for all users
   const [users, setUsers] = useState([]);
+  // set up inital state for profile
   const [profile, setProfile] = useState({
     user_id: currentUser.id,
     makeup_skill_id: 0,
   });
   const [loading, setLoading] = useState(true); // Add loading state
-
+  // useEffect to get the current user, listening for a change in the token
   useEffect(() => {
     getCurrentUser(token).then((author) => {
       setCurrentUser(author[0]);
     });
   }, [token]);
-
+  // get all the users on inital render of the page
   useEffect(() => {
     getUsers();
   }, []);
-
+  // function to get all the users from the API and update the users state
   const getUsers = () => {
     return getAllUsers().then((usersFromAPI) => {
       setUsers(usersFromAPI);
       setLoading(false); // Set loading to false when data is fetched
     });
   };
-
+  // function to get all the makeup skills from the API and update the makeup skills state
   const makeupSkillsList = () => {
     return GetMakeupSkills().then((makeupSkillsFromAPI) => {
       setMakeupSkills(makeupSkillsFromAPI);
     });
   };
-
+  // on inital render of the page, get all the makeup skills
   useEffect(() => {
     makeupSkillsList();
   }, []);
-
+  // function to handle the controlled input change
   const handleControlledInputChange = (event) => {
     const newProfile = { ...profile };
     newProfile[event.target.name] = event.target.value;
     setProfile(newProfile);
   };
-
+  // function to handle the save profile button click
   const handleClickSaveProfile = (event) => {
     event.preventDefault();
     const newProfile = {
@@ -69,9 +73,9 @@ export const UserHome = ({ token }) => {
 
   return (
     <div className="userHome">
-      <h1>Welcome to Makeup Finder!</h1>
-      <h2> Hello {currentUser.first_name}! </h2>
-      <p>
+      <h1 className="welcome-makeup-finder">Welcome to Makeup Finder!</h1>
+      <h2 className="user-welcome"> Hello {currentUser.first_name}! </h2>
+      <p className="about">
         Here you can find makeup products and tips to help you find the perfect
         look!
       </p>

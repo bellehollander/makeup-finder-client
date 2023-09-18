@@ -1,0 +1,87 @@
+/* Style the form container */
+.column.is-two-thirds {
+  background-color: #f8f4f4;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  margin-top: -250px;
+  width: 600px;
+  text-align: center;
+}
+
+/* Style the form title */
+.title {
+  font-size: 2rem;
+  color: #ff1493; /* Pink */
+  margin-bottom: 20px;
+}
+
+/* Style the form subtitle */
+.subtitle {
+  font-size: 1.2rem;
+  color: #ff69b4; /* Lighter pink */
+  margin-bottom: 20px;
+}
+
+/* Style the input fields */
+.label {
+  color: #ff69b4; /* Lighter pink */
+}
+
+.input {
+  border: 1px solid #ff69b4; /* Lighter pink border */
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+/* Style the submit button */
+.button.is-link {
+  background-color: #ff1493; /* Pink */
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 5px;
+}
+
+.button.is-link:hover {
+  background-color: #ff69b4; /* Lighter pink on hover */
+}
+
+/* Style the cancel button */
+.button.is-link.is-light {
+  background-color: transparent;
+  color: #ff1493; /* Pink */
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.button.is-link.is-light:hover {
+  color: #ff69b4; /* Lighter pink on hover */
+}
+
+/* Style the error message */
+.help.is-danger {
+  color: #ff1493; /* Pink */
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
+/* Center the form horizontally */
+.columns.is-centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#submit {
+  margin-left: 250px;
+}

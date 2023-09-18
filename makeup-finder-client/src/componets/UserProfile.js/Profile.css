@@ -1,0 +1,83 @@
+/* Profile.css */
+
+.profileForm {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: lavenderblush;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profileForm h1 {
+  font-size: 24px;
+  color: #ff1493; /* Pink color for headings */
+  margin-top: 0;
+  text-align: center;
+}
+
+.profileForm h2 {
+  font-size: 20px;
+  color: #ff1493; /* Pink color for subheadings */
+  margin-top: 10px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-size: 16px;
+  color: #333; /* Dark gray color for labels */
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+}
+
+button {
+  background-color: #ff1493; /* Pink color for buttons */
+  color: #fff;
+  border: none;
+  border-radius: 16px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: lavenderblush; /* Darker pink color on hover */
+  color: black;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  font-size: 16px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+ul li img {
+  margin-left: 10px;
+  max-width: 50px;
+  border-radius: 70px;
+}
+
+.no-preferences {
+  color: #ff6b81; /* Pink color for messages */
+}

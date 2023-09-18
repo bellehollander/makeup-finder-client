@@ -1,53 +1,51 @@
 import React, { useEffect, useState } from "react";
-import {
-  CreateProfilePreference,
-  getCurrentUser,
-} from "../../managers/SkillManager";
+import { CreateProfilePreference } from "../../managers/SkillManager";
 import { GetAllPrefrences } from "../../managers/ProductManager";
-import { getAllUsers } from "../../managers/UserManager";
+import { getCurrentUserProfile } from "../../managers/UserManager";
 import { getAllProfilePrefrences } from "../../managers/PrefrencesManager";
+import { deleteProfilePrefrence } from "../../managers/PrefrencesManager";
+import "./Profile.css";
 
 export const Profile = ({ token }) => {
+  // set up inital state for makeup preferences
   const [makeup_preferences, setMakeupPreferences] = useState([]);
-  const [currentUser, setCurrentUser] = useState({});
+  // set up inital state for current profile
   const [CurrentProfile, setProfile] = useState({});
+  // set up inital state for the profile preferences
   const [profile_preferences, setProfilePreferences] = useState([]);
+  // set up inital state for profile preference
   const [profile_preference, setProfilePreference] = useState({
     Profile: 0,
     makeup_preference: 0,
   });
-
+  // function to get the current user profile and update the current profile state
+  // based on the token
   useEffect(() => {
-    getCurrentUser(token).then((author) => {
-      setCurrentUser(author[0]);
+    getCurrentUserProfile(token).then((author) => {
+      setProfile(author);
     });
   }, [token]);
-
-  useEffect(() => {
-    getAllUsers().then((usersFromAPI) => {
-      const currentProfile = usersFromAPI.find(
-        (user) => user.User.id === currentUser.id
-      );
-      setProfile(currentProfile);
-    });
-  }, [currentUser]);
-
+  // function to get all makeup preferences from the API and update the makeup preferences state
   const getMakeupPreferences = () => {
     return GetAllPrefrences().then((makeup_preferencesFromAPI) => {
       setMakeupPreferences(makeup_preferencesFromAPI);
     });
   };
-
+  // on inital render grab all makeup preferences
   useEffect(() => {
     getMakeupPreferences();
   }, []);
-
+  // function for handling the change of the profile preference
   const handlePrefrenceChange = (event) => {
+    // create a copy of the profile preference state
     const newProfilePreference = { ...profile_preference };
+    // update the profile preference state
     newProfilePreference[event.target.name] = event.target.value;
+    // update the profile preference state
     setProfilePreference(newProfilePreference);
   };
-
+  // function to get all profile preferences from the API and update the profile preferences state
+  // filter the profile preferences to only grab the ones that matches the current profile
   const UsersPrefrences = () => {
     getAllProfilePrefrences().then((profilePreferencesFromAPI) => {
       const currentPrefrences = [];
@@ -59,12 +57,14 @@ export const Profile = ({ token }) => {
       setProfilePreferences(currentPrefrences);
     });
   };
-
+  // grab the current user's profile preferences
+  // dependent on the current profile
   useEffect(() => {
     UsersPrefrences();
   }, [CurrentProfile]);
-
+  // function for handling the click of the save profile preference button
   const handleClickSaveProfilePreference = (event) => {
+    // prevent the default
     event.preventDefault();
 
     // Check if the user already has this preference
@@ -73,7 +73,7 @@ export const Profile = ({ token }) => {
         preference.MakeupPreferences.id ===
         parseInt(profile_preference.makeup_preference)
     );
-
+    // if the user already has this preference, alert them
     if (existingPreference) {
       window.alert("You've already added this preference.");
     } else {
@@ -82,14 +82,25 @@ export const Profile = ({ token }) => {
         Profile: CurrentProfile.id,
         MakeupPreferences: parseInt(profile_preference.makeup_preference),
       };
-
+      // post the profile preference
       CreateProfilePreference(newProfilePreference).then(() => {
         window.alert(
           "Profile Preference Added! We recommend adding more for more product recommendations!"
         );
+        // get the users profile preferences again
         UsersPrefrences();
       });
     }
+  };
+
+  const handleClickDeleteProfilePreference = (id, e) => {
+    // prevent the default
+    e.preventDefault();
+    // delete the profile preference
+    deleteProfilePrefrence(id).then(() => {
+      // get the users profile preferences again
+      UsersPrefrences();
+    });
   };
 
   const eyeshadowPrefrence = makeup_preferences.filter(
@@ -135,7 +146,7 @@ export const Profile = ({ token }) => {
 
   return (
     <form className="profileForm">
-      <h1> {currentUser.first_name}'s Profile </h1>
+      <h1> {CurrentProfile.User?.first_name}'s Profile </h1>
       <h2 className="profileForm__title"> Add Profile Preferences! </h2>
       <fieldset>
         <div className="form-group">
@@ -391,6 +402,14 @@ export const Profile = ({ token }) => {
                       key={preference.id}
                       src={preference.MakeupPreferences.image}
                     />
+                    <button
+                      onClick={(e) => {
+                        handleClickDeleteProfilePreference(preference.id, e);
+                      }}
+                    >
+                      {" "}
+                      Remove{" "}
+                    </button>
                   </li>
                 </>
               ))}

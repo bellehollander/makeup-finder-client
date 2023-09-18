@@ -8,8 +8,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getProductById } from "../../managers/ProductManager";
 
 export const EditProductForm = () => {
+  // grab the id from the url
   const { id } = useParams();
   const navigate = useNavigate();
+  // set up the initial state for product
   const [product, setProduct] = useState({
     label: "",
     brand: "",
@@ -20,22 +22,23 @@ export const EditProductForm = () => {
     product_type: 0,
     makeup_preferences: 0,
   });
-
+  // set up the initial state for product types
   const [product_types, setProductTypes] = useState([]);
+  // set up the initial state for makeup preferences
   const [makeup_preferences, setMakeupPreferences] = useState([]);
-
+  // function to get the product types from the API, then set the state
   const getProductTypes = () => {
     return GetAllProductTypes().then((product_typesFromAPI) => {
       setProductTypes(product_typesFromAPI);
     });
   };
-
+  // function to get the makeup preferences from the API, then set the state
   const getMakeupPreferences = () => {
     return GetAllPrefrences().then((makeup_preferencesFromAPI) => {
       setMakeupPreferences(makeup_preferencesFromAPI);
     });
   };
-
+  // on inital render of the page, get the makeup preferences and product types
   useEffect(() => {
     getMakeupPreferences();
     getProductTypes();
@@ -49,7 +52,9 @@ export const EditProductForm = () => {
 
   useEffect(() => {
     getProductById(id).then((productData) => {
+      // create a copy of the product state
       const copy = { ...product };
+      // here we need to make sure we set the state of product type to the makeup preference product type . id
       copy.product_type = productData.makeup_preferences.product_type.id;
       copy.makeup_preferences = productData.makeup_preferences.id;
       copy.label = productData.label;
@@ -62,14 +67,21 @@ export const EditProductForm = () => {
       setProduct(copy);
     });
   }, [id]);
+  // listening for a change in the id
 
   const handleControlledInputChange = (event) => {
-    const { id, value } = event.target;
-    setProduct({ ...product, [id]: value });
+    // create a copy of the product state
+    const copy = { ...product };
+    // update the event.target.id property on the copy
+    copy[event.target.id] = event.target.value;
+    // set the state
+    setProduct(copy);
   };
-
+  // function to handle the save button
   const handleClickSaveProduct = (event) => {
+    // prevent the browser from submitting the form
     event.preventDefault();
+    // create a new product object
     const newProduct = {
       id: id,
       label: product.label,
@@ -80,11 +92,14 @@ export const EditProductForm = () => {
       link: product.link,
       makeup_preferences: parseInt(product.makeup_preferences),
     };
+    // and save it to the API
     EditProduct(newProduct).then(() => {
+      // navigate back to the product manager page
       navigate("/productManager");
     });
   };
-
+  // function to filter the makeup preferences based on the product type
+  // pass in product_type_id as an parameter
   const filterMakeupPreferences = (product_type_id) => {
     const filteredMakeupPreferences = makeup_preferences.filter(
       (makeup_preference) => {

@@ -4,19 +4,25 @@ import { getCurrentUserProfile } from "../../managers/UserManager";
 import { getAllProfilePrefrences } from "../../managers/PrefrencesManager";
 import { PostWishList } from "../../managers/WishListManager";
 import { getWishList } from "../../managers/WishListManager";
+import "./ProductList.css";
 
 export const UserProductList = ({ token }) => {
+  // set up inital state for products
   const [products, setProducts] = useState([]);
+  // set up inital state for profile preferences
   const [profilePreferences, setProfilePreferences] = useState([]);
+  // set up inital state for current profile
   const [currentProfile, setCurrentProfile] = useState({});
+  // set up inital state for wish list
   const [wishList, setWishList] = useState([]);
-
+  // function to get all products from the API and update the product state
   const getProducts = () => {
     return GetAllProducts().then((productsFromAPI) => {
       setProducts(productsFromAPI);
     });
   };
-
+  // function to get all profile preferences from the API and update the profile preferences state
+  // filter the profile preferences to only grab the ones that matches the current profile
   const UsersPrefrences = () => {
     getAllProfilePrefrences().then((profilePreferencesFromAPI) => {
       const currentPrefrences = profilePreferencesFromAPI.filter(
@@ -26,21 +32,23 @@ export const UserProductList = ({ token }) => {
       setProfilePreferences(currentPrefrences);
     });
   };
-
+  // useEffect to get the current user profile and update the current profile state
+  // listening for a change in the token state
   useEffect(() => {
     getCurrentUserProfile(token).then((userProfile) => {
       setCurrentProfile(userProfile);
     });
   }, [token]);
-
+  // on inital render grab the user profile prefrences depending on the current profile
   useEffect(() => {
     UsersPrefrences();
   }, [currentProfile]);
-
+  // on inital render grab all products
   useEffect(() => {
     getProducts();
   }, []);
-
+  // function to get all wish list items from the API then update the state
+  // filter the wish list items to only grab the ones that matches the current profile
   const getWishListItems = () => {
     return getWishList().then((wishListFromAPI) => {
       const currentWishList = wishListFromAPI.filter(
@@ -49,11 +57,11 @@ export const UserProductList = ({ token }) => {
       setWishList(currentWishList);
     });
   };
-
+  // depending on the current profile, grab the wish list items
   useEffect(() => {
     getWishListItems();
   }, [currentProfile]);
-
+  // function to add a product to the wish list
   const addToWishList = (productId) => {
     const newWishListItem = {
       profile: currentProfile.id,
@@ -64,10 +72,13 @@ export const UserProductList = ({ token }) => {
     });
   };
 
+  // want a function that adds the price of all the products in the wish list
+  // then display the total price of all the products in the wish list
+
   return (
     <>
-      <h1>Products</h1>
-      <div className="products">
+      <h1 className="product-header">Products For You</h1>
+      <div className="products-container">
         {products
           .filter((product) =>
             profilePreferences.some(
@@ -77,26 +88,30 @@ export const UserProductList = ({ token }) => {
             )
           )
           .map((product) => {
-            // Check if the product is in the wish list
             const isProductInWishList = wishList.some(
               (wishListItem) => wishListItem.product.id === product.id
             );
 
             return (
-              <div key={product.id} className="product">
+              <div key={product.id} className="product-card">
                 <h2>{product.label}</h2>
-                <p>{product.brand}</p>
-                <p>{product.description}</p>
-                <img src={product.image} alt="product image" />
-                <p> $ {product.price}0</p>
-
-                {isProductInWishList ? (
-                  <p>This product is already in your wish list!</p>
-                ) : (
-                  <button onClick={() => addToWishList(product.id)}>
-                    Add Product to Wish List
-                  </button>
-                )}
+                <p className="product-brand">{product.brand}</p>
+                <p className="product-description">{product.description}</p>
+                <img
+                  className="product-image"
+                  src={product.image}
+                  alt="product image"
+                />
+                <p className="price">$ {product.price}0</p>
+                <div className="wishlist">
+                  {isProductInWishList ? (
+                    <p id="added">This product is in your wishlist</p>
+                  ) : (
+                    <button onClick={() => addToWishList(product.id)}>
+                      Add to Wishlist
+                    </button>
+                  )}
+                </div>
               </div>
             );
           })}

@@ -1,0 +1,96 @@
+/* productlist.css */
+
+/* Style the overall container */
+.products {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(250px, 1fr)
+  ); /* Responsive grid with square cards */
+  gap: 70px; /* Spacing between products */
+}
+
+/* Style each product card */
+.product-card {
+  background-color: lavenderblush;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid lightpink; /* Gray border */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Drop shadow */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  height: 100%; /* Ensure each card takes the full height */
+
+  /* Center align text and elements */
+  text-align: center;
+}
+
+/* Add hover effect on product cards */
+.product-card:hover {
+  transform: translateY(-5px); /* Move up slightly on hover */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Enhanced drop shadow */
+}
+
+/* Style product details */
+.product-card h3 {
+  font-size: 1.5rem; /* Larger product title */
+  margin: 10px 0;
+}
+
+.product-card p {
+  font-size: 1rem;
+  margin: 5px 0;
+}
+
+/* Style product image */
+.product-card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px; /* Rounded image corners */
+  margin: 10px 0;
+}
+
+/* Style product price and links */
+.product-card .product-price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ff1493; /* Pink text color */
+  margin-top: auto; /* Push price to the bottom */
+  padding: 10px;
+  background-color: #f8f8f8; /* Match background color */
+  border-top: 1px solid #ddd; /* Gray border at the top of the price */
+}
+
+.product-card .product-link {
+  font-size: 1rem;
+  color: black;
+  text-decoration: none;
+  display: block;
+  margin-top: 10px;
+}
+
+.product-card .product-link:hover {
+  text-decoration: underline; /* Underline link on hover */
+}
+
+/* Style delete and edit buttons */
+.product-card .product-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.product-card .product-buttons button {
+  background-color: #ff1493; /* Pink button background */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.product-card .product-buttons button:hover {
+  background-color: #ff006e; /* Darker pink on hover */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}

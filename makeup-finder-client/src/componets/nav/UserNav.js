@@ -19,9 +19,6 @@ export const UserNav = ({ token, setToken, isAdmin }) => {
         <div className="navbar-start">
           {token ? (
             <>
-              <Link to="/Profile/:id" className="navbar-item">
-                Profile
-              </Link>
               <Link to="/products" className="navbar-item">
                 Products for you
               </Link>
@@ -53,10 +50,14 @@ export const UserNav = ({ token, setToken, isAdmin }) => {
                 </button>
               ) : (
                 <>
-                  <Link to="/register" className="button is-link">
+                  <Link to="/register" className="button is-link" id="login">
                     Register
                   </Link>
-                  <Link to="/login" className="button is-outlined">
+                  <Link
+                    to="/login"
+                    className="button is-outlined"
+                    id="register"
+                  >
                     Login
                   </Link>
                 </>
