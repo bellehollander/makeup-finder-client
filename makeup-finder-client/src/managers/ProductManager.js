@@ -75,3 +75,37 @@ export const getProductById = (productId) => {
     },
   }).then((res) => res.json());
 };
+
+export const getProductReviews = (productId) => {
+  return fetch(`http://localhost:8000/productreviews?product_id=${productId}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `Token ${localStorage.getItem("auth_token")}`,
+    },
+  }).then((res) => res.json());
+};
+
+export const createProductReview = (newReview) => {
+  return fetch(`http://localhost:8000/productreviews`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Token ${localStorage.getItem("auth_token")}`,
+    },
+    body: JSON.stringify(newReview),
+  }).then((res) => res.json());
+};
+
+export const deleteProductReview = (reviewId) => {
+  return fetch(`http://localhost:8000/productreviews/${reviewId}`, {
+    method: "DELETE",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Token ${localStorage.getItem("auth_token")}`,
+    },
+  });
+};

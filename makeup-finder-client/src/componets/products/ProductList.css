@@ -22,16 +22,26 @@
   text-align: center;
 }
 .product-header {
-  color: #ff1493;
+  color: black;
   text-align: center;
   font-size: 2rem;
   margin-bottom: 20px;
+  font-family: "Bungee Inline", cursive;
+  font-family: "Shrikhand", cursive;
 }
 
 .product-card h2 {
   font-size: 24px;
-  color: #ff1493; /* Pink color for product name */
+  color: black; /* Pink color for product name */
   margin: 0;
+  font-family: "Bungee Inline", cursive;
+  font-family: "Shrikhand", cursive;
+  text-decoration-line: underline;
+}
+
+.product-card h2:hover {
+  color: #ff1493;
+  text-decoration-line: underline;
 }
 
 .product-card p {
@@ -56,6 +66,8 @@
   font-size: 18px;
   color: #ff1493; /* Pink color for brand */
   margin-top: 10px;
+  font-style: italic;
+  font-weight: bold;
 }
 
 /* New CSS to center the images within the square boxes */
@@ -96,4 +108,9 @@
   font-size: 1 rem; /* Smaller font size */
   color: #ff1493; /* Your desired pink color */
   font-weight: bold;
+}
+.product-label {
+  color: black;
+  font-family: "Bungee Inline", cursive;
+  font-family: "Shrikhand", cursive;
 }

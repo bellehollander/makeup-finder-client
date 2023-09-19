@@ -4,6 +4,9 @@ import { getCurrentUserProfile } from "../../managers/UserManager";
 import { getAllProfilePrefrences } from "../../managers/PrefrencesManager";
 import { PostWishList } from "../../managers/WishListManager";
 import { getWishList } from "../../managers/WishListManager";
+import { Link, useNavigate } from "react-router-dom";
+import { ProductDetailList } from "./productDetailList";
+
 import "./ProductList.css";
 
 export const UserProductList = ({ token }) => {
@@ -15,6 +18,8 @@ export const UserProductList = ({ token }) => {
   const [currentProfile, setCurrentProfile] = useState({});
   // set up inital state for wish list
   const [wishList, setWishList] = useState([]);
+  const navigate = useNavigate();
+
   // function to get all products from the API and update the product state
   const getProducts = () => {
     return GetAllProducts().then((productsFromAPI) => {
@@ -77,7 +82,17 @@ export const UserProductList = ({ token }) => {
 
   return (
     <>
-      <h1 className="product-header">Products For You</h1>
+      <div className="tip-list-header">
+        <h1 className="header-tips">
+          {" "}
+          {currentProfile.User?.first_name}'s Products!{" "}
+        </h1>
+        <img
+          className="sparkle-image"
+          src="https://thumbs.dreamstime.com/b/yellow-original-bright-stars-sparkle-icon-glowing-light-effect-star-vector-illustration-yellow-original-bright-stars-sparkle-icon-192033133.jpg"
+          alt="gold sparkle image"
+        />
+      </div>
       <div className="products-container">
         {products
           .filter((product) =>
@@ -94,9 +109,16 @@ export const UserProductList = ({ token }) => {
 
             return (
               <div key={product.id} className="product-card">
-                <h2>{product.label}</h2>
+                <h2
+                  className="product-label"
+                  onClick={() => {
+                    navigate(`/productDetailList/${product.id}`);
+                  }}
+                >
+                  {product.label}
+                </h2>
                 <p className="product-brand">{product.brand}</p>
-                <p className="product-description">{product.description}</p>
+
                 <img
                   className="product-image"
                   src={product.image}

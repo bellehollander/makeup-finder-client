@@ -7,6 +7,7 @@ import { Profile } from "../UserProfile.js/CreateProfile";
 import { UserProductList } from "../products/UserProductList";
 import { UserTipList } from "../tips/userTipList";
 import { WishList } from "../wishlist/UserWishList";
+import { ProductDetailList } from "../products/productDetailList";
 
 export const UserViews = ({ token, setToken, isAdmin, setAdmin }) => {
   return (
@@ -26,6 +27,7 @@ export const UserViews = ({ token, setToken, isAdmin, setAdmin }) => {
         <Route path="/products" element={<UserProductList token={token} />} />
         <Route path="/tips" element={<UserTipList />} />
         <Route path="/wishlist" element={<WishList token={token} />} />
+        <Route path="/productDetailList/:id" element={<ProductDetailList />} />
       </Routes>
     </>
   );

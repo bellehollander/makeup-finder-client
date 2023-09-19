@@ -30,6 +30,9 @@ export const AdminNav = ({ token, setToken, isAdmin }) => {
               <Link to="/tipManager" className="navbar-item">
                 Tip Manager
               </Link>
+              <Link to="/makeupPreferences" className="navbar-item">
+                Makeup Preferences Manager
+              </Link>
               <button
                 className="button is-outlined"
                 onClick={() => {

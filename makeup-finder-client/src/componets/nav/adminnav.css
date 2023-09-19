@@ -10,6 +10,8 @@
   font-weight: bold;
   text-align: center;
   margin: 0;
+  font-family: "Bungee Inline", cursive;
+  font-family: "Shrikhand", cursive;
 }
 /* want no background color for the title when hovering */
 
@@ -29,6 +31,8 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  font-family: "Bungee Inline", cursive;
+  font-family: "Shrikhand", cursive;
 }
 
 /* Change link/button color and background on hover */

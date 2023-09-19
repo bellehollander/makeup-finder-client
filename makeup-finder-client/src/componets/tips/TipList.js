@@ -20,7 +20,14 @@ export const TipList = () => {
 
   return (
     <>
-      <h1>Tips</h1>
+      <div className="tip-list-header">
+        <h1 className="header-tips">Tips</h1>
+        <img
+          className="sparkle-image"
+          src="https://thumbs.dreamstime.com/b/yellow-original-bright-stars-sparkle-icon-glowing-light-effect-star-vector-illustration-yellow-original-bright-stars-sparkle-icon-192033133.jpg"
+          alt="gold sparkle image"
+        />
+      </div>
       <div className="tips-container">
         {tips.map((tip) => (
           <div key={tip.id} className="tip-card">

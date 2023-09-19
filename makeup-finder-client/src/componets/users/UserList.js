@@ -17,7 +17,14 @@ export const ViewUsers = () => {
 
   return (
     <>
-      <h1>Users</h1>
+      <div className="tip-list-header">
+        <h1 className="header-tips">Users</h1>
+        <img
+          className="sparkle-image"
+          src="https://thumbs.dreamstime.com/b/yellow-original-bright-stars-sparkle-icon-glowing-light-effect-star-vector-illustration-yellow-original-bright-stars-sparkle-icon-192033133.jpg"
+          alt="gold sparkle image"
+        />
+      </div>
       <table className="user-table">
         <thead>
           <tr>
