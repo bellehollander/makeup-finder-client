@@ -43,7 +43,16 @@ export const WishList = ({ token }) => {
   console.log(totalPrice);
   return (
     <>
-      <h1 className="product-header">Wish List</h1>
+      <div className="tip-list-header">
+        <h1 className="header-tips">
+          {currentProfile.User?.first_name}'s Wish List!{" "}
+        </h1>
+        <img
+          className="sparkle-image"
+          src="https://thumbs.dreamstime.com/b/yellow-original-bright-stars-sparkle-icon-glowing-light-effect-star-vector-illustration-yellow-original-bright-stars-sparkle-icon-192033133.jpg"
+          alt="gold sparkle image"
+        />
+      </div>
       <div className="products">
         {wishList.map((wishListItem) => {
           return (

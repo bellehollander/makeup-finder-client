@@ -73,16 +73,24 @@ export const UserHome = ({ token }) => {
 
   return (
     <div className="userHome">
-      <h1 className="welcome-makeup-finder">Welcome to Makeup Finder!</h1>
-      <h2 className="user-welcome"> Hello {currentUser.first_name}! </h2>
+      <div className="tip-list-header">
+        <h2 className="user-welcome"> Hello {currentUser.first_name}! </h2>
+        <img
+          className="sparkle-image"
+          src="https://thumbs.dreamstime.com/b/yellow-original-bright-stars-sparkle-icon-glowing-light-effect-star-vector-illustration-yellow-original-bright-stars-sparkle-icon-192033133.jpg"
+          alt="gold sparkle image"
+        />
+      </div>
+
       <p className="about">
-        Here you can find makeup products and tips to help you find the perfect
-        look!
+        Welcome to Makeup Finder! We're so glad you're here!
       </p>
       {loading ? (
         <p>Loading...</p>
       ) : hasProfile ? (
-        <Link to={`/Profile/${userProfileId.id}`}>View Your Profile</Link>
+        <Link to={`/Profile/${userProfileId.id}`} className="view-profile-link">
+          View Your Profile
+        </Link>
       ) : (
         <form>
           <fieldset>

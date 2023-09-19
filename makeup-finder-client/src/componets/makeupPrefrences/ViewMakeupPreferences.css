@@ -1,0 +1,100 @@
+.makeup-preferences-container {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 20px;
+  font-family: "Bungee Inline", cursive;
+  font-family: "Shrikhand", cursive;
+}
+
+.categories {
+  flex: 1;
+  background-color: lavenderblush;
+  padding: 20px;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+.categories h2 {
+  color: #ff1493;
+}
+
+.category-button {
+  list-style: none;
+  margin-bottom: 10px;
+  cursor: pointer;
+  padding: 10px;
+  background-color: #ff69b4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.category-button.selected {
+  background-color: #ff1493;
+}
+
+.makeup-preferences {
+  flex: 2;
+  padding: 20px;
+  background-color: lavenderblush;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+.makeup-preferences h2 {
+  color: #ff1493;
+}
+
+.makeup-preferences ul {
+  list-style: none;
+  padding: 0;
+}
+
+.makeup-preferences li {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  margin-bottom: 10px;
+  background-color: lavenderblush;
+  padding: 10px;
+  border-radius: 5px;
+  color: #ff1493;
+}
+
+.makeup-preferences img {
+  max-width: 70px;
+  margin-right: 10px;
+}
+
+.makeup-preferences button {
+  background-color: #ff69b4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.create-form {
+  flex: 1;
+  padding: 20px;
+  background-color: lavenderblush;
+  border-radius: 10px;
+}
+
+.create-button {
+  background-color: #ff69b4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.create-button:hover {
+  background-color: #ff1493;
+}
+.create-header {
+  color: #ff1493;
+  margin-bottom: 10px;
+}

@@ -22,11 +22,18 @@ export const ProductList = () => {
 
   return (
     <>
-      <h1>Products</h1>
+      <div className="tip-list-header">
+        <h1 className="header-tips"> Product Manager</h1>
+        <img
+          className="sparkle-image"
+          src="https://thumbs.dreamstime.com/b/yellow-original-bright-stars-sparkle-icon-glowing-light-effect-star-vector-illustration-yellow-original-bright-stars-sparkle-icon-192033133.jpg"
+          alt="gold sparkle image"
+        />
+      </div>
       <div className="products">
         {products.map((product) => (
           <div key={product.id} className="product-card">
-            <h3>{product.label}</h3>
+            <h3 className="product-label">{product.label}</h3>
             <p>{product.brand}</p>
             <p>{product.description}</p>
             <img

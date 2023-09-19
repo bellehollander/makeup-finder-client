@@ -9,6 +9,7 @@ import { CreateTips } from "../tips/CreateTip";
 import { ProductList } from "../products/ProductList";
 import { ProductForm } from "../products/CreateProduct";
 import { EditProductForm } from "../products/EditProduct";
+import { ViewMakeupPreferences } from "../makeupPrefrences/makeupPrefrenceManager";
 
 export const AdminViews = ({ token, setToken, setAdmin }) => {
   return (
@@ -30,6 +31,7 @@ export const AdminViews = ({ token, setToken, setAdmin }) => {
         <Route path="/productManager" element={<ProductList />} />
         <Route path="/createProduct" element={<ProductForm />} />
         <Route path="/products/:id" element={<EditProductForm />} />
+        <Route path="/makeupPreferences" element={<ViewMakeupPreferences />} />
       </Routes>
     </>
   );

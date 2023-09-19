@@ -27,7 +27,21 @@ export const UserTipList = ({ token }) => {
 
   return (
     <>
-      <h1 className="tip-header">Tips For You</h1>
+      <div className="tip-list-header">
+        <h1 className="header-tips">
+          {" "}
+          {CurrentProfile.User?.first_name}'s Tips!{" "}
+        </h1>
+        <img
+          className="sparkle-image"
+          src="https://thumbs.dreamstime.com/b/yellow-original-bright-stars-sparkle-icon-glowing-light-effect-star-vector-illustration-yellow-original-bright-stars-sparkle-icon-192033133.jpg"
+          alt="gold sparkle image"
+        />
+      </div>
+      <p className="skill-level-tips">
+        {" "}
+        skill level: {CurrentProfile.makeup_skill?.label}
+      </p>
       <div className="tips-container">
         {tips.map((tip) => {
           // Check if the tip's makeup_skill ID matches the current user's profile skill

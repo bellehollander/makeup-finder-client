@@ -9,6 +9,8 @@
   ); /* Responsive grid */
   gap: 70px; /* Spacing between tips */
   justify-content: center; /* Center the tips */
+  font-family: "Bungee Inline", cursive;
+  font-family: "Shrikhand", cursive;
 }
 
 .tip-header {
@@ -33,6 +35,8 @@
   font-size: 24px;
   color: #ff1493; /* Pink color for tip title */
   margin: 0;
+  font-family: "Bungee Inline", cursive;
+  font-family: "Shrikhand", cursive;
 }
 
 .tip-card p {
@@ -60,4 +64,34 @@
 
 .tip-card .delete-button:hover {
   background-color: #ff006e; /* Darker pink color on hover */
+}
+
+.tip-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  font-family: "Bungee Inline", cursive;
+  font-family: "Shrikhand", cursive;
+}
+
+.tip-header {
+  color: #ff1493;
+  text-align: center;
+  font-size: 2rem;
+  margin: 0;
+}
+
+/* Sparkle image styles */
+.sparkle-image {
+  width: 50px;
+  height: 50px;
+  margin-left: 10px; /* Adjust the margin as needed to position it correctly */
+}
+
+.skill-level-tips {
+  text-align: center;
+  font-size: 1.5rem;
+  font-family: "Bungee Inline", cursive;
+  font-family: "Shrikhand", cursive;
 }

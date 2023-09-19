@@ -1,13 +1,30 @@
 /* Profile.css */
 
+/* Style for the main profileForm container */
 .profileForm {
-  max-width: 600px;
-  margin: 0 auto;
+  display: flex; /* Use flexbox to arrange choices and preferences side by side */
+  justify-content: space-between; /* Add space between the two sections */
+  max-width: 800px; /* Adjust the max width as needed */
+  margin: 0 auto; /* Center the form horizontally */
+  padding: 20px;
   padding: 20px;
   background-color: lavenderblush;
-  border: 1px solid #e5e5e5;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px 5px #ff1493; /* Gold glowing shadow */
+  border: none;
+  font-family: "Bungee Inline", cursive;
+  font-family: "Shrikhand", cursive;
+}
+
+/* Style for the choices section */
+.profileForm__choices {
+  flex: 1; /* Allow this section to grow and take available space */
+  margin-right: 20px; /* Add some space between choices and preferences */
+}
+
+/* Style for the preferences section */
+.profileForm__preferences {
+  flex: 1; /* Allow this section to grow and take available space */
 }
 
 .profileForm h1 {
@@ -38,7 +55,6 @@
   width: 100%;
   padding: 10px;
   font-size: 16px;
-  border: 1px solid #e5e5e5;
   border-radius: 4px;
 }
 
@@ -80,4 +96,23 @@ ul li img {
 
 .no-preferences {
   color: #ff6b81; /* Pink color for messages */
+}
+.profileForm__makeup-prefs {
+  flex: 1; /* Take up remaining space */
+  padding: 20px;
+  background-color: lavenderblush;
+
+  border-radius: 8px;
+  border: none;
+  font-family: "Bungee Inline", cursive;
+  font-family: "Shrikhand", cursive;
+}
+
+/* Adjust the width of the makeup preferences selection dropdown */
+.form-group {
+  flex: 1; /* Take up half of the form */
+  margin-bottom: 20px;
+}
+.profileForm fieldset {
+  border: 1px solid black; /* Pink border around the fieldset */
 }
