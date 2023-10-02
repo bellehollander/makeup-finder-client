@@ -2,471 +2,171 @@ import React, { useEffect, useState } from "react";
 import { CreateProfilePreference } from "../../managers/SkillManager";
 import { GetAllPrefrences } from "../../managers/ProductManager";
 import { getCurrentUserProfile } from "../../managers/UserManager";
-import { getAllProfilePrefrences } from "../../managers/PrefrencesManager";
-import { deleteProfilePrefrence } from "../../managers/PrefrencesManager";
+import {
+  getAllProfilePrefrences,
+  deleteProfilePrefrence,
+} from "../../managers/PrefrencesManager";
+import { GetAllProductTypes } from "../../managers/ProductManager";
 import "./Profile.css";
 
 export const Profile = ({ token }) => {
+
   // set up inital state for makeup preferences
-  const [makeup_preferences, setMakeupPreferences] = useState([]);
+  const [makeupPreferences, setMakeupPreferences] = useState([]);
+  // set up inital state for product types
+  const [productTypes, setProductTypes] = useState([]);
+  // set up inital state for selected product type
+  const [selectedProductType, setSelectedProductType] = useState(null);
   // set up inital state for current profile
   const [CurrentProfile, setProfile] = useState({});
-  // set up inital state for the profile preferences
-  const [profile_preferences, setProfilePreferences] = useState([]);
-  // set up inital state for profile preference
-  const [profile_preference, setProfilePreference] = useState({
-    Profile: 0,
-    makeup_preference: 0,
-  });
-  // function to get the current user profile and update the current profile state
-  // based on the token
+  // set up inital state for profile preferences
+  const [profilePreferences, setProfilePreferences] = useState([]);
+// use effect to get the current user profile and update the current profile state, listening for a change in the token
   useEffect(() => {
     getCurrentUserProfile(token).then((author) => {
       setProfile(author);
     });
   }, [token]);
-  // function to get all makeup preferences from the API and update the makeup preferences state
+// function to get all of the makeup preferences from the API and update the makeup preferences state
   const getMakeupPreferences = () => {
-    return GetAllPrefrences().then((makeup_preferencesFromAPI) => {
-      setMakeupPreferences(makeup_preferencesFromAPI);
+    return GetAllPrefrences().then((makeupPreferencesFromAPI) => {
+      setMakeupPreferences(makeupPreferencesFromAPI);
     });
   };
-  // on inital render grab all makeup preferences
+// function to get all of the product types from the API and update the product types state
+  const getProductTypes = () => {
+    return GetAllProductTypes().then((productTypesFromAPI) => {
+      setProductTypes(productTypesFromAPI);
+    });
+  };
+// useEffect to get all makeup preferences and product types on inital render
   useEffect(() => {
     getMakeupPreferences();
+    getProductTypes();
   }, []);
-  // function for handling the change of the profile preference
-  const handlePrefrenceChange = (event) => {
-    // create a copy of the profile preference state
-    const newProfilePreference = { ...profile_preference };
-    // update the profile preference state
-    newProfilePreference[event.target.name] = event.target.value;
-    // update the profile preference state
-    setProfilePreference(newProfilePreference);
-  };
-  // function to get all profile preferences from the API and update the profile preferences state
-  // filter the profile preferences to only grab the ones that matches the current profile
-  const UsersPrefrences = () => {
+// function to get all profile preferences from the API and update the profile preferences state
+// filter the profile preferences to only grab the ones that matches the current profile
+  const getUsersPreferences = () => {
     getAllProfilePrefrences().then((profilePreferencesFromAPI) => {
-      const currentPrefrences = [];
-      profilePreferencesFromAPI.map((profilePreference) => {
-        if (profilePreference.Profile.id === CurrentProfile?.id) {
-          currentPrefrences.push(profilePreference);
-        }
-      });
-      setProfilePreferences(currentPrefrences);
+      const currentPreferences = profilePreferencesFromAPI.filter(
+        (profilePreference) =>
+          profilePreference.Profile.id === CurrentProfile?.id
+      );
+      setProfilePreferences(currentPreferences);
     });
   };
-  // grab the current user's profile preferences
-  // dependent on the current profile
+// when a change in the current profile is detected, get the users preferences
   useEffect(() => {
-    UsersPrefrences();
+    getUsersPreferences();
   }, [CurrentProfile]);
-  // function for handling the click of the save profile preference button
-  const handleClickSaveProfilePreference = (event) => {
-    // prevent the default
+// function to handle the click of the save button on the profile preferences
+  const handleClickSaveProfilePreference = (event, preferenceId) => {
+    // prevent the default action of the button
     event.preventDefault();
-
-    // Check if the user already has this preference
-    const existingPreference = profile_preferences.find(
-      (preference) =>
-        preference.MakeupPreferences.id ===
-        parseInt(profile_preference.makeup_preference)
+    // check to see if the user already has this preference
+    const existingPreference = profilePreferences.find(
+      (preference) => preference.MakeupPreferences.id === preferenceId
     );
-    // if the user already has this preference, alert them
+// if the user already has this preference, remove it, if not add it
     if (existingPreference) {
-      window.alert("You've already added this preference.");
+      // User already has this preference, remove it
+      handleClickDeleteProfilePreference(existingPreference.id);
     } else {
-      // If not, add the preference
+      // User doesn't have this preference, add it
       const newProfilePreference = {
         Profile: CurrentProfile.id,
-        MakeupPreferences: parseInt(profile_preference.makeup_preference),
+        MakeupPreferences: preferenceId,
       };
-      // post the profile preference
+// call the create profile preference function and then get the users preferences to update the page
       CreateProfilePreference(newProfilePreference).then(() => {
-        window.alert(
-          "Profile Preference Added! We recommend adding more for more product recommendations!"
-        );
-        // get the users profile preferences again
-        UsersPrefrences();
+        getUsersPreferences();
       });
     }
   };
-
-  const handleClickDeleteProfilePreference = (id, e) => {
-    // prevent the default
-    e.preventDefault();
-    // delete the profile preference
+// function to handle the click of the delete button on the profile preferences
+// then get the users preferences to update the page
+  const handleClickDeleteProfilePreference = (id) => {
     deleteProfilePrefrence(id).then(() => {
-      // get the users profile preferences again
-      UsersPrefrences();
+      getUsersPreferences();
     });
   };
-
-  const eyeshadowPrefrence = makeup_preferences.filter(
-    (makeup_preference) => makeup_preference.product_type.label === "eyeshadow"
-  );
-
-  const eyelinerPrefrence = makeup_preferences.filter(
-    (makeup_preference) => makeup_preference.product_type.label === "Eyeliner"
-  );
-
-  const mascaraPrefrence = makeup_preferences.filter(
-    (makeup_preference) => makeup_preference.product_type.label === "mascara"
-  );
-
-  const foundationPrefrence = makeup_preferences.filter(
-    (makeup_preference) => makeup_preference.product_type.label === "foundation"
-  );
-
-  const blushPrefrence = makeup_preferences.filter(
-    (makeup_preference) => makeup_preference.product_type.label === "blush"
-  );
-
-  const bronzerPrefrence = makeup_preferences.filter(
-    (makeup_preference) => makeup_preference.product_type.label === "bronzer"
-  );
-
-  const lipstickPrefrence = makeup_preferences.filter(
-    (makeup_preference) => makeup_preference.product_type.label === "lipstick"
-  );
-
-  const highlighterPrefrence = makeup_preferences.filter(
-    (makeup_preference) =>
-      makeup_preference.product_type.label === "highlighter"
-  );
-
-  const concealerPrefrence = makeup_preferences.filter(
-    (makeup_preference) => makeup_preference.product_type.label === "concealer"
-  );
-
-  const ContourPrefrence = makeup_preferences.filter(
-    (makeup_preference) => makeup_preference.product_type.label === "contour"
+// filter the makeup preferences to only grab the ones that match the selected product type
+  const preferencesForSelectedType = makeupPreferences.filter(
+    (preference) => preference.product_type.id === selectedProductType
   );
 
   return (
     <>
       <div className="tip-list-header">
-        <h1 className="header-tips">
-          {CurrentProfile.User?.first_name}'s Profile
-        </h1>
+        <h2> {CurrentProfile.User?.first_name}'s Profile</h2>
         <img
           className="sparkle-image"
           src="https://thumbs.dreamstime.com/b/yellow-original-bright-stars-sparkle-icon-glowing-light-effect-star-vector-illustration-yellow-original-bright-stars-sparkle-icon-192033133.jpg"
           alt="gold sparkle image"
         />
       </div>
-      <form className="profileForm">
-        <div className="profileForm__choices">
-          <h2 className="profileForm__title"> Add Profile Preferences! </h2>
-          <fieldset>
-            <div className="form-group">
-              <label htmlFor="makeup_preference">
-                Which of these eyeshadows do you like best?
-              </label>
-              <select
-                value={profile_preference.makeup_preference}
-                name="makeup_preference"
-                id="makeup_preference"
-                className="form-control"
-                onChange={handlePrefrenceChange}
+      <div className="makeup-preferences-container">
+        <div className="categories">
+          <h2>Product Types</h2>
+          <ul>
+            {productTypes.map((productType) => (
+              <li
+                key={productType.id}
+                onClick={() => setSelectedProductType(productType.id)}
+                className={`category-button ${
+                  selectedProductType === productType.id ? "selected" : ""
+                }`}
               >
-                <option value="0">Select a Makeup Preference</option>
-                {eyeshadowPrefrence.map((makeup_preference) => (
-                  <option
-                    key={makeup_preference.id}
-                    value={makeup_preference.id}
-                  >
-                    {makeup_preference.label}
-                  </option>
-                ))}
-              </select>
-              <button onClick={handleClickSaveProfilePreference}>
-                Save Profile Preference
-              </button>
-            </div>
-          </fieldset>
-          <fieldset>
-            <div className="form-group">
-              <label htmlFor="makeup_preference">
-                Which of these eyeliners do you like best?
-              </label>
-              <select
-                value={profile_preference.makeup_preference}
-                name="makeup_preference"
-                id="makeup_preference"
-                className="form-control"
-                onChange={handlePrefrenceChange}
-              >
-                <option value="0">Select a Makeup Preference</option>
-                {eyelinerPrefrence.map((makeup_preference) => (
-                  <option
-                    key={makeup_preference.id}
-                    value={makeup_preference.id}
-                  >
-                    {makeup_preference.label}
-                  </option>
-                ))}
-              </select>
-              <button onClick={handleClickSaveProfilePreference}>
-                Save Profile Preference
-              </button>
-            </div>
-          </fieldset>
-          <fieldset>
-            <div className="form-group">
-              <label htmlFor="makeup_preference">
-                Which of these mascaras do you like best?
-              </label>
-              <select
-                value={profile_preference.makeup_preference}
-                name="makeup_preference"
-                id="makeup_preference"
-                className="form-control"
-                onChange={handlePrefrenceChange}
-              >
-                <option value="0">Select a Makeup Preference</option>
-                {mascaraPrefrence.map((makeup_preference) => (
-                  <option
-                    key={makeup_preference.id}
-                    value={makeup_preference.id}
-                  >
-                    {makeup_preference.label}
-                  </option>
-                ))}
-              </select>
-              <button onClick={handleClickSaveProfilePreference}>
-                Save Profile Preference
-              </button>
-            </div>
-          </fieldset>
-          <fieldset>
-            <div className="form-group">
-              <label htmlFor="makeup_preference">
-                Which of these foundations do you like best?
-              </label>
-              <select
-                value={profile_preference.makeup_preference}
-                name="makeup_preference"
-                id="makeup_preference"
-                className="form-control"
-                onChange={handlePrefrenceChange}
-              >
-                <option value="0">Select a Makeup Preference</option>
-                {foundationPrefrence.map((makeup_preference) => (
-                  <option
-                    key={makeup_preference.id}
-                    value={makeup_preference.id}
-                  >
-                    {makeup_preference.label}
-                  </option>
-                ))}
-              </select>
-              <button onClick={handleClickSaveProfilePreference}>
-                Save Profile Preference
-              </button>
-            </div>
-          </fieldset>
-          <fieldset>
-            <div className="form-group">
-              <label htmlFor="makeup_preference">
-                Which of these blushes do you like best?
-              </label>
-              <select
-                value={profile_preference.makeup_preference}
-                name="makeup_preference"
-                id="makeup_preference"
-                className="form-control"
-                onChange={handlePrefrenceChange}
-              >
-                <option value="0">Select a Makeup Preference</option>
-                {blushPrefrence.map((makeup_preference) => (
-                  <option
-                    key={makeup_preference.id}
-                    value={makeup_preference.id}
-                  >
-                    {makeup_preference.label}
-                  </option>
-                ))}
-              </select>
-              <button onClick={handleClickSaveProfilePreference}>
-                Save Profile Preference
-              </button>
-            </div>
-          </fieldset>
-          <fieldset>
-            <div className="form-group">
-              <label htmlFor="makeup_preference">
-                Which of these lipsticks do you like best?
-              </label>
-              <select
-                value={profile_preference.makeup_preference}
-                name="makeup_preference"
-                id="makeup_preference"
-                className="form-control"
-                onChange={handlePrefrenceChange}
-              >
-                <option value="0">Select a Makeup Preference</option>
-                {lipstickPrefrence.map((makeup_preference) => (
-                  <option
-                    key={makeup_preference.id}
-                    value={makeup_preference.id}
-                  >
-                    {makeup_preference.label}
-                  </option>
-                ))}
-              </select>
-              <button onClick={handleClickSaveProfilePreference}>
-                Save Profile Preference
-              </button>
-            </div>
-          </fieldset>
-          <fieldset>
-            <div className="form-group">
-              <label htmlFor="makeup_preference">
-                Which of these highlighter do you like best?
-              </label>
-              <select
-                value={profile_preference.makeup_preference}
-                name="makeup_preference"
-                id="makeup_preference"
-                className="form-control"
-                onChange={handlePrefrenceChange}
-              >
-                <option value="0">Select a Makeup Preference</option>
-                {highlighterPrefrence.map((makeup_preference) => (
-                  <option
-                    key={makeup_preference.id}
-                    value={makeup_preference.id}
-                  >
-                    {makeup_preference.label}
-                  </option>
-                ))}
-              </select>
-              <button onClick={handleClickSaveProfilePreference}>
-                Save Profile Preference
-              </button>
-            </div>
-          </fieldset>
-          <fieldset>
-            <div className="form-group">
-              <label htmlFor="makeup_preference">
-                Which of these bronzers do you like best?
-              </label>
-              <select
-                value={profile_preference.makeup_preference}
-                name="makeup_preference"
-                id="makeup_preference"
-                className="form-control"
-                onChange={handlePrefrenceChange}
-              >
-                <option value="0">Select a Makeup Preference</option>
-                {bronzerPrefrence.map((makeup_preference) => (
-                  <option
-                    key={makeup_preference.id}
-                    value={makeup_preference.id}
-                  >
-                    {makeup_preference.label}
-                  </option>
-                ))}
-              </select>
-              <button onClick={handleClickSaveProfilePreference}>
-                Save Profile Preference
-              </button>
-            </div>
-          </fieldset>
-          <fieldset>
-            <div className="form-group">
-              <label htmlFor="makeup_preference">
-                Which of these concealers do you like best?
-              </label>
-              <select
-                value={profile_preference.makeup_preference}
-                name="makeup_preference"
-                id="makeup_preference"
-                className="form-control"
-                onChange={handlePrefrenceChange}
-              >
-                <option value="0">Select a Makeup Preference</option>
-                {concealerPrefrence.map((makeup_preference) => (
-                  <option
-                    key={makeup_preference.id}
-                    value={makeup_preference.id}
-                  >
-                    {makeup_preference.label}
-                  </option>
-                ))}
-              </select>
-              <button onClick={handleClickSaveProfilePreference}>
-                Save Profile Preference
-              </button>
-            </div>
-          </fieldset>
-          <fieldset>
-            <div className="form-group">
-              <label htmlFor="makeup_preference">
-                Which of these Contours do you like best?
-              </label>
-              <select
-                value={profile_preference.makeup_preference}
-                name="makeup_preference"
-                id="makeup_preference"
-                className="form-control"
-                onChange={handlePrefrenceChange}
-              >
-                <option value="0">Select a Makeup Preference</option>
-                {ContourPrefrence.map((makeup_preference) => (
-                  <option
-                    key={makeup_preference.id}
-                    value={makeup_preference.id}
-                  >
-                    {makeup_preference.label}
-                  </option>
-                ))}
-              </select>
-              <button onClick={handleClickSaveProfilePreference}>
-                Save Profile Preference
-              </button>
-            </div>
-          </fieldset>
+                {productType.label}
+              </li>
+            ))}
+          </ul>
         </div>
-        <div>
-          <h2 className="profileForm__title">Makeup Preferences:</h2>
-          <fieldset>
-            <div className="form-group">
-              {profile_preferences.length > 0 ? (
-                <ul>
-                  {profile_preferences.map((preference) => (
-                    <>
-                      <li key={preference.id}>
-                        {preference.MakeupPreferences.label}
-
-                        <img
-                          key={preference.id}
-                          src={preference.MakeupPreferences.image}
-                        />
-                        <button
-                          onClick={(e) => {
-                            handleClickDeleteProfilePreference(
-                              preference.id,
-                              e
-                            );
-                          }}
-                        >
-                          {" "}
-                          Remove{" "}
-                        </button>
-                      </li>
-                    </>
-                  ))}
-                </ul>
-              ) : (
-                <p>No makeup preferences selected.</p>
-              )}
-            </div>
-          </fieldset>
+        <div className="makeup-preferences">
+          <h2>Makeup Preferences</h2>
+          <ul>
+            {preferencesForSelectedType.map((preference) => (
+              <li key={preference.id}>
+                {preference.label}
+                <img src={preference.image} />
+                <button
+                  onClick={(e) =>
+                    handleClickSaveProfilePreference(e, preference.id)
+                  }
+                >
+                  {profilePreferences.some(
+                    (pref) => pref.MakeupPreferences.id === preference.id
+                  )
+                    ? "Remove"
+                    : "Add"}
+                </button>
+              </li>
+            ))}
+          </ul>
         </div>
-      </form>
+        <div className="create-form">
+          <h2>Your Makeup Preferences</h2>
+          <ul>
+            {profilePreferences.map((preference) => (
+              <li key={preference.id}>
+                {preference.MakeupPreferences.label}
+                <img
+                  className="prefrence-image"
+                  src={preference.MakeupPreferences.image}
+                />
+                <button
+                  className="category-button"
+                  onClick={() =>
+                    handleClickDeleteProfilePreference(preference.id)
+                  }
+                >
+                  Remove
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </>
   );
 };

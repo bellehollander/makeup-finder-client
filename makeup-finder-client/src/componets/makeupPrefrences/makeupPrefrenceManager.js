@@ -4,8 +4,11 @@ import { useState, useEffect } from "react";
 import "./ViewMakeupPreferences.css";
 
 export const ViewMakeupPreferences = () => {
+  // set up state for all of the makeup preferences
   const [makeup_preferences, setMakeupPreferences] = useState([]);
+  // set up state for all of the product types
   const [product_types, setProductTypes] = useState([]);
+  // set up state for the makeup preference to be added
   const [makeup_preference, setMakeupPreference] = useState({
     label: "",
     product_type: 0,
@@ -14,24 +17,24 @@ export const ViewMakeupPreferences = () => {
 
   const [selectedCategory, setSelectedCategory] = useState(null); // State to track the selected category
   const [showCreateForm, setShowCreateForm] = useState(false); // State to manage the create form visibility
-
+  // function to grab all of the makeup preferences from the API, and update the makeup preferences state
   const getMakeupPreferences = () => {
     return GetAllPrefrences().then((makeup_preferencesFromAPI) => {
       setMakeupPreferences(makeup_preferencesFromAPI);
     });
   };
-
+  // function to grab all of the product types from the API, and update the product types state
   const getProductTypes = () => {
     return GetAllProductTypes().then((product_typesFromAPI) => {
       setProductTypes(product_typesFromAPI);
     });
   };
-
+  // on inital render, get all of the makeup preferences and product types
   useEffect(() => {
     getMakeupPreferences();
     getProductTypes();
   }, []);
-
+  // function to post a new makeup preference to the API
   const addMakeupPreference = (makeup_preference) => {
     const makeupPrefrencesToSave = {
       label: makeup_preference.label,
@@ -50,13 +53,14 @@ export const ViewMakeupPreferences = () => {
     })
       .then((res) => res.json())
       .then((newMakeupPreference) => {
-        // Add the new preference to the state
-        setMakeupPreferences([...makeup_preferences, newMakeupPreference]);
+        // re-render the makeup preferences
+        getMakeupPreferences();
         // Close the create form
         setShowCreateForm(false);
       });
   };
-
+  // function to delete the makeup preference from the API
+  // then re-render the makeup preferences
   const deleteMakeupPreference = (makeup_preference_id) => {
     fetch(`http://localhost:8000/makeuppreferences/${makeup_preference_id}`, {
       method: "DELETE",
@@ -132,7 +136,7 @@ export const ViewMakeupPreferences = () => {
                 ))}
           </ul>
         </div>
-        <div className="create-form">
+        <div className="create-form" id="create-prefrence">
           {/* Button to toggle the create form */}
           <button
             onClick={() => setShowCreateForm(!showCreateForm)}
@@ -146,6 +150,7 @@ export const ViewMakeupPreferences = () => {
             <div>
               <h2 className="create-header">Create Makeup Preference</h2>
               <form
+                id="create-form-prefrence"
                 onSubmit={(event) => {
                   event.preventDefault();
                   addMakeupPreference(makeup_preference);

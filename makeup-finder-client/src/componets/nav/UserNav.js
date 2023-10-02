@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+import logo from "./makeup-logo.png";
 export const UserNav = ({ token, setToken, isAdmin }) => {
   const navigate = useNavigate();
   const navbar = useRef();
@@ -11,9 +11,11 @@ export const UserNav = ({ token, setToken, isAdmin }) => {
       role="navigation"
       aria-label="main navigation"
     >
-      <a className="navbar-item" href="/">
-        <h1 className="title is-4"> Makeup-Finder</h1>
-      </a>
+      {token && (
+        <a className="navbar-item" href="/">
+          <img className="logo-navigation" src={logo} />
+        </a>
+      )}
 
       <div className="navbar-menu" ref={navbar}>
         <div className="navbar-start">
@@ -50,14 +52,14 @@ export const UserNav = ({ token, setToken, isAdmin }) => {
                 </button>
               ) : (
                 <>
-                  <Link to="/register" className="button is-link" id="login">
-                    Register
-                  </Link>
                   <Link
-                    to="/login"
+                    to="/register"
                     className="button is-outlined"
                     id="register"
                   >
+                    Register
+                  </Link>
+                  <Link to="/login" className="button is-outlined" id="login">
                     Login
                   </Link>
                 </>

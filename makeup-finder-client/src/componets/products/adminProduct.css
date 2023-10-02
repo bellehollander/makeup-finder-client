@@ -57,8 +57,8 @@
   color: #ff1493; /* Pink text color */
   margin-top: auto; /* Push price to the bottom */
   padding: 10px;
-  background-color: #f8f8f8; /* Match background color */
-  border-top: 1px solid #ddd; /* Gray border at the top of the price */
+  background-color: lavenderblush; /* Match background color */
+  border-top: 1px solid #ff1493; /* Gray border at the top of the price */
 }
 
 .product-card .product-link {
@@ -93,4 +93,15 @@
 .product-card .product-buttons button:hover {
   background-color: #ff006e; /* Darker pink on hover */
   transform: scale(1.05); /* Slightly enlarge on hover */
+}
+.category-button {
+  margin-left: 10px;
+  margin-top: 5px;
+}
+.product-brand {
+  font-size: 18px;
+  color: #ff1493; /* Pink color for brand */
+  margin-top: 10px;
+  font-style: italic;
+  font-weight: bold;
 }

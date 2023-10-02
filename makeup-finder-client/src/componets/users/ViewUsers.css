@@ -20,7 +20,7 @@
 }
 
 .user-table tbody tr:nth-child(even) {
-  background-color: #f8f8f8; /* Light gray background for even rows */
+  background-color: lavenderblush; /* Light gray background for even rows */
 }
 
 /* Add some spacing between the table and the header */

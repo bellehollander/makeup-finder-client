@@ -103,3 +103,41 @@ select {
   background-color: #f986c3; /* Darker pink color on hover */
   transform: scale(1.05); /* Slightly increase size on hover */
 }
+/* Style the form container */
+form {
+  background-color: lavenderblush;
+  padding: 20px;
+  border: none;
+  width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  font-family: "Bungee Inline", cursive;
+  font-family: "Shrikhand", cursive;
+  box-shadow: 0 0 10px 1px #ff1493;
+}
+
+/* Style the form title */
+h1 {
+  font-size: 1.5rem;
+  color: #ff1493; /* Pink */
+  margin-bottom: 20px;
+}
+
+/* Style the input label */
+label {
+  font-size: 1rem;
+  color: #ff69b4; /* Lighter pink */
+}
+
+/* Style the input fields */
+select {
+  border: 1px solid #ff69b4; /* Lighter pink border */
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 5px;
+  font-size: 1rem;
+  width: 100%;
+}
+.create-profile-fieldset {
+  border: none;
+}

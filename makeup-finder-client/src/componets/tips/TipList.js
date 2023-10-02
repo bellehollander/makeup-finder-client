@@ -27,6 +27,9 @@ export const TipList = () => {
           src="https://thumbs.dreamstime.com/b/yellow-original-bright-stars-sparkle-icon-glowing-light-effect-star-vector-illustration-yellow-original-bright-stars-sparkle-icon-192033133.jpg"
           alt="gold sparkle image"
         />
+        <Link to="/createTip" className="create-tip-link">
+          Create a Tip!
+        </Link>
       </div>
       <div className="tips-container">
         {tips.map((tip) => (
@@ -46,9 +49,6 @@ export const TipList = () => {
             </button>
           </div>
         ))}
-        <Link to="/createTip" className="create-tip-link">
-          Create a Tip!
-        </Link>
       </div>
     </>
   );

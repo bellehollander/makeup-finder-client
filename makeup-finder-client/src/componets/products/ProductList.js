@@ -29,12 +29,16 @@ export const ProductList = () => {
           src="https://thumbs.dreamstime.com/b/yellow-original-bright-stars-sparkle-icon-glowing-light-effect-star-vector-illustration-yellow-original-bright-stars-sparkle-icon-192033133.jpg"
           alt="gold sparkle image"
         />
+        <Link to="/createProduct" className="create-product-link">
+          Create a Product!
+        </Link>
       </div>
+
       <div className="products">
         {products.map((product) => (
           <div key={product.id} className="product-card">
             <h3 className="product-label">{product.label}</h3>
-            <p>{product.brand}</p>
+            <p className="product-brand">{product.brand}</p>
             <p>{product.description}</p>
             <img
               className="product-image"
@@ -42,27 +46,22 @@ export const ProductList = () => {
               alt="product image"
             />
             <p className="product-price">$ {product.price}0</p>
-            <a href={product.link} className="product-link">
-              {product.link}
-            </a>
+
             <button
               onClick={() => {
                 DeleteProduct(product.id).then(() => {
                   getProducts();
                 });
               }}
-              className="product-delete-button"
+              className="category-button"
             >
               Delete
             </button>
-            <Link to={`/products/${product.id}`} className="product-edit-link">
+            <Link to={`/products/${product.id}`} className="category-button">
               Edit
             </Link>
           </div>
         ))}
-        <Link to="/createProduct" className="create-product-link">
-          Create a Product!
-        </Link>
       </div>
     </>
   );

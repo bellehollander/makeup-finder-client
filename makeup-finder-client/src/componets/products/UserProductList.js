@@ -5,7 +5,6 @@ import { getAllProfilePrefrences } from "../../managers/PrefrencesManager";
 import { PostWishList } from "../../managers/WishListManager";
 import { getWishList } from "../../managers/WishListManager";
 import { Link, useNavigate } from "react-router-dom";
-import { ProductDetailList } from "./productDetailList";
 
 import "./ProductList.css";
 
@@ -83,7 +82,7 @@ export const UserProductList = ({ token }) => {
   return (
     <>
       <div className="tip-list-header">
-        <h1 className="header-tips">
+        <h1 className="header-tips" id="user-greeting">
           {" "}
           {currentProfile.User?.first_name}'s Products!{" "}
         </h1>
@@ -107,6 +106,11 @@ export const UserProductList = ({ token }) => {
               (wishListItem) => wishListItem.product.id === product.id
             );
 
+            // Find the makeup preference that matches the product's makeup_preferences
+            const makeupPreference = profilePreferences.find(
+              (mp) => mp.MakeupPreferences.id === product.makeup_preferences.id
+            );
+
             return (
               <div key={product.id} className="product-card">
                 <h2
@@ -117,6 +121,7 @@ export const UserProductList = ({ token }) => {
                 >
                   {product.label}
                 </h2>
+
                 <p className="product-brand">{product.brand}</p>
 
                 <img
@@ -125,11 +130,25 @@ export const UserProductList = ({ token }) => {
                   alt="product image"
                 />
                 <p className="price">$ {product.price}0</p>
+                <div className="makeup-pref">
+                  <img
+                    className="prefrence-image"
+                    src={makeupPreference?.MakeupPreferences?.image}
+                    alt={makeupPreference?.MakeupPreferences?.label}
+                  />
+                  <p className="makeup-pref-label">
+                    {makeupPreference?.MakeupPreferences?.label}
+                  </p>
+                </div>
+
                 <div className="wishlist">
                   {isProductInWishList ? (
                     <p id="added">This product is in your wishlist</p>
                   ) : (
-                    <button onClick={() => addToWishList(product.id)}>
+                    <button
+                      className="category-button"
+                      onClick={() => addToWishList(product.id)}
+                    >
                       Add to Wishlist
                     </button>
                   )}

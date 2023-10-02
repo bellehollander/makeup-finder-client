@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { registerUser } from "../../managers/AuthManager";
+import logo from "./makeup-logo.png";
 
 export const Register = ({ setToken, setAdmin }) => {
   const firstName = useRef();
@@ -50,8 +51,8 @@ export const Register = ({ setToken, setAdmin }) => {
 
   return (
     <section className="columns is-centered">
-      <form className="column is-two-thirds">
-        <h1 className="title">Makeup-Finder</h1>
+      <form className="column is-two-thirds" id="register-form">
+        <img className="title" src={logo}></img>
         <p className="subtitle">Create an account</p>
         <div className="field">
           <label className="label">First Name</label>
@@ -84,7 +85,7 @@ export const Register = ({ setToken, setAdmin }) => {
           <label className="label">Account Type</label>
           <div className="control">
             <div className="select">
-              <select ref={account_type}>
+              <select ref={account_type} id="account-type">
                 <option value="user">User</option>
                 <option value="admin">Admin</option>
               </select>
@@ -126,10 +127,12 @@ export const Register = ({ setToken, setAdmin }) => {
 
         <div className="field is-grouped">
           <div className="control">
-            <button onClick={handleRegister}>Submit</button>
+            <button className="category-button" onClick={handleRegister}>
+              Submit
+            </button>
           </div>
           <div className="control">
-            <Link to="/login" className="button is-link is-light">
+            <Link to="/login" className="button is-link is-light" id="cancel">
               Cancel
             </Link>
           </div>

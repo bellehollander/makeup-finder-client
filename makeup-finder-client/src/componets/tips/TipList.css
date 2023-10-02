@@ -95,3 +95,14 @@
   font-family: "Bungee Inline", cursive;
   font-family: "Shrikhand", cursive;
 }
+.create-tip-link {
+  margin-bottom: 10px;
+  cursor: pointer;
+  padding: 10px;
+  background-color: #ff69b4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  margin-left: 10px;
+}

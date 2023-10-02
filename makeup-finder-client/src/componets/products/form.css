@@ -1,0 +1,75 @@
+/* Add this CSS to your project's styles.css file */
+
+.edit-product-form {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px;
+
+  background-color: lavenderblush;
+  box-shadow: 0 0 10px 5px #ff1493;
+  border: none;
+}
+
+.edit-product-form,
+.edit-product-form * {
+  border: none; /* Remove border for form and its children */
+}
+
+.edit-product-form__title {
+  font-size: 24px;
+  color: #ff69b4; /* Pink color */
+  margin-bottom: 20px;
+  font-family: "Bungee Inline", cursive;
+  font-family: "Shrikhand", cursive;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.edit-product-label {
+  font-size: 20px;
+  color: black; /* Pink color */
+  align-items: center;
+  font-family: "Bungee Inline", cursive;
+  font-family: "Shrikhand", cursive;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.edit-product-input {
+  width: 400px;
+  padding: 10px;
+  font-size: 16px;
+  box-shadow: 0 0 10px 1px #ff1493;
+  border-radius: 30px;
+  margin-left: 110px;
+  margin-top: 10px;
+}
+
+.edit-product-button {
+  display: block;
+  width: 400px;
+  align-content: center;
+  padding: 10px;
+  background-color: #ff69b4; /* Pink color */
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 140px;
+  margin-top: 10px;
+}
+
+.edit-product-button:hover {
+  background-color: #e05baf; /* Slightly darker pink on hover */
+}
+
+#product_type {
+  width: 430px;
+}
+#makeup_preferences {
+  width: 430px;
+}

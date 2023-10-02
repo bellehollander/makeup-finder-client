@@ -92,18 +92,20 @@ export const ProductForm = () => {
 
   return (
     <>
-      <form className="productForm">
-        <h2 className="productForm__title">New Product</h2>
+      <form className="edit-product-form">
+        <h2 className="edit-product-form__title">New Product</h2>
         <fieldset>
           <div className="form-group">
-            <label htmlFor="label">Product Label:</label>
+            <label htmlFor="label" className="edit-product-label">
+              Product Label:
+            </label>
             <input
               type="text"
               id="label"
               onChange={handleControlledInputChange}
               required
               autoFocus
-              className="form-control"
+              className="edit-product-input"
               placeholder="Product Label"
               value={product.label}
             />
@@ -111,14 +113,16 @@ export const ProductForm = () => {
         </fieldset>
         <fieldset>
           <div className="form-group">
-            <label htmlFor="brand">Product Brand:</label>
+            <label htmlFor="brand" className="edit-product-label">
+              Product Brand:
+            </label>
             <input
               type="text"
               id="brand"
               onChange={handleControlledInputChange}
               required
               autoFocus
-              className="form-control"
+              className="edit-product-input"
               placeholder="Product Brand"
               value={product.brand}
             />
@@ -126,14 +130,16 @@ export const ProductForm = () => {
         </fieldset>
         <fieldset>
           <div className="form-group">
-            <label htmlFor="description">Product Description:</label>
+            <label htmlFor="description" className="edit-product-label">
+              Product Description:
+            </label>
             <input
               type="text"
               id="description"
               onChange={handleControlledInputChange}
               required
               autoFocus
-              className="form-control"
+              className="edit-product-input"
               placeholder="Product Description"
               value={product.description}
             />
@@ -141,14 +147,16 @@ export const ProductForm = () => {
         </fieldset>
         <fieldset>
           <div className="form-group">
-            <label htmlFor="price">Product Price:</label>
+            <label htmlFor="price" className="edit-product-label">
+              Product Price:
+            </label>
             <input
               type="text"
               id="price"
               onChange={handleControlledInputChange}
               required
               autoFocus
-              className="form-control"
+              className="edit-product-input"
               placeholder="Product Price"
               value={product.price}
             />
@@ -156,14 +164,16 @@ export const ProductForm = () => {
         </fieldset>
         <fieldset>
           <div className="form-group">
-            <label htmlFor="link">Product Link:</label>
+            <label htmlFor="link" className="edit-product-label">
+              Product Link:
+            </label>
             <input
               type="text"
               id="link"
               onChange={handleControlledInputChange}
               required
               autoFocus
-              className="form-control"
+              className="edit-product-input"
               placeholder="Product Link"
               value={product.link}
             />
@@ -171,14 +181,16 @@ export const ProductForm = () => {
         </fieldset>
         <fieldset>
           <div className="form-group">
-            <label htmlFor="image">Product Image:</label>
+            <label htmlFor="image" className="edit-product-label">
+              Product Image:
+            </label>
             <input
               type="text"
               id="image"
               onChange={handleControlledInputChange}
               required
               autoFocus
-              className="form-control"
+              className="edit-product-input"
               placeholder="Product Link"
               value={product.image}
             />
@@ -186,13 +198,15 @@ export const ProductForm = () => {
         </fieldset>
         <fieldset>
           <div className="form-group">
-            <label htmlFor="product_type">Product Type:</label>
+            <label htmlFor="product_type" className="edit-product-label">
+              Product Type:
+            </label>
             <select
               value={product.product_type}
               name="product_type"
               id="product_type"
               onChange={handleControlledInputChange}
-              className="form-control"
+              className="edit-product-input"
             >
               <option value="0">Select a Product Type</option>
               {product_types.map((product_type) => (
@@ -205,7 +219,7 @@ export const ProductForm = () => {
         </fieldset>
         <fieldset>
           <div className="form-group">
-            <label htmlFor="makeup_preferences">
+            <label htmlFor="makeup_preferences" className="edit-product-label">
               Product Makeup Preference:
             </label>
             <select
@@ -213,7 +227,7 @@ export const ProductForm = () => {
               name="makeup_preferences"
               id="makeup_preferences"
               onChange={handleControlledInputChange}
-              className="form-control"
+              className="edit-product-input"
             >
               <option value="0">Select a Makeup Preference</option>
               {filterMakeupPreferences(parseInt(product.product_type)).map(

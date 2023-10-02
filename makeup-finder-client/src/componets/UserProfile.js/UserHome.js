@@ -93,7 +93,7 @@ export const UserHome = ({ token }) => {
         </Link>
       ) : (
         <form>
-          <fieldset>
+          <fieldset className="create-profile-fieldset">
             <div className="form-group">
               <h1> Please Create Your Profile To Begin! </h1>
               <label htmlFor="makeup_skill_id">Makeup Skill Level: </label>
