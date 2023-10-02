@@ -2,12 +2,16 @@ import { getWishList } from "../../managers/WishListManager";
 import { getCurrentUserProfile } from "../../managers/UserManager";
 import { useState, useEffect } from "react";
 import { DeleteWishList } from "../../managers/WishListManager";
+import { useNavigate } from "react-router-dom";
+
+import { Link } from "react-router-dom";
 
 export const WishList = ({ token }) => {
   // set up inital state for wish list
   const [wishList, setWishList] = useState([]);
   // set up inital state for current profile
   const [currentProfile, setCurrentProfile] = useState({});
+  const navigate = useNavigate();
   // fucntion to get all wish list items from the API and update the wish list state
   // filter the wish list items to only grab the ones that matches the current profile
   const getWishListItems = () => {
@@ -44,7 +48,7 @@ export const WishList = ({ token }) => {
   return (
     <>
       <div className="tip-list-header">
-        <h1 className="header-tips">
+        <h1 className="header-tips" id="user-greeting">
           {currentProfile.User?.first_name}'s Wish List!{" "}
         </h1>
         <img
@@ -57,17 +61,27 @@ export const WishList = ({ token }) => {
         {wishList.map((wishListItem) => {
           return (
             <div className="product-card" key={wishListItem.id}>
-              <h2 className="product-label">{wishListItem.product.label}</h2>
+              <h2
+                className="product-label"
+                onClick={() => {
+                  navigate(`/productDetailList/${wishListItem?.product?.id}`);
+                }}
+              >
+                {wishListItem.product.label}
+              </h2>
               <p className="product-brand">{wishListItem.product.brand}</p>
-              <p className="product-link"> {wishListItem.product.link} </p>
+              <Link className="product-link" to={wishListItem.product.link}>
+                Buy Now
+              </Link>
               <img
                 className="product-image"
                 src={wishListItem.product.image}
                 alt="product image"
               />
               <p>{wishListItem.product.description}</p>
-              <p className="price">Price: ${wishListItem.product.price}</p>
+              <p className="price">Price: ${wishListItem.product.price}0</p>
               <button
+                className="category-button"
                 onClick={() => {
                   deleteWishListItem(wishListItem.id);
                 }}
@@ -78,7 +92,7 @@ export const WishList = ({ token }) => {
           );
         })}
         <div className="cart-total">
-          <h3>Cart Total:</h3>
+          <h3>Product Total:</h3>
           <span className="total-price">${totalPrice}</span>
         </div>
       </div>

@@ -1,9 +1,11 @@
-import { Link, useNavigate } from "react-router-dom";
-import "./adminnav.css";
 import { useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import "./adminnav.css"; // Use the same CSS file as UserNav
+import logo from "./makeup-logo.png";
 
 export const AdminNav = ({ token, setToken, isAdmin }) => {
   const navigate = useNavigate();
+  const navbar = useRef();
 
   return (
     <nav
@@ -11,14 +13,14 @@ export const AdminNav = ({ token, setToken, isAdmin }) => {
       role="navigation"
       aria-label="main navigation"
     >
-      <div className="navbar-brand">
+      {token && (
         <a className="navbar-item" href="/">
-          <h1 className="title is-4">Makeup-Finder</h1>
+          <img className="logo-navigation" src={logo} />
         </a>
-      </div>
+      )}
 
-      <div className="navbar-menu">
-        <div className="navbar-end">
+      <div className="navbar-menu" ref={navbar}>
+        <div className="navbar-start">
           {token ? (
             <>
               <Link to="/productManager" className="navbar-item">
@@ -33,27 +35,42 @@ export const AdminNav = ({ token, setToken, isAdmin }) => {
               <Link to="/makeupPreferences" className="navbar-item">
                 Makeup Preferences Manager
               </Link>
-              <button
-                className="button is-outlined"
-                onClick={() => {
-                  setToken("");
-                  localStorage.removeItem("makeup_admin");
-                  navigate("/login");
-                }}
-              >
-                Logout
-              </button>
             </>
           ) : (
-            <>
-              <Link to="/register" className="button is-link">
-                Register
-              </Link>
-              <Link to="/login" className="button is-outlined">
-                Login
-              </Link>
-            </>
+            <></>
           )}
+        </div>
+
+        <div className="navbar-end">
+          <div className="navbar-item">
+            <div className="buttons">
+              {token ? (
+                <button
+                  className="button is-outlined"
+                  onClick={() => {
+                    setToken("");
+                    localStorage.removeItem("makeup_admin");
+                    navigate("/login");
+                  }}
+                >
+                  Logout
+                </button>
+              ) : (
+                <>
+                  <Link
+                    to="/register"
+                    className="button is-outlined"
+                    id="register"
+                  >
+                    Register
+                  </Link>
+                  <Link to="/login" className="button is-outlined" id="login">
+                    Login
+                  </Link>
+                </>
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </nav>

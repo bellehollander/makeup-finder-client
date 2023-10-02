@@ -7,45 +7,51 @@ import {
 } from "../../managers/ProductManager";
 import { getCurrentUserProfile } from "../../managers/UserManager";
 import { deleteProductReview } from "../../managers/ProductManager";
+import { Link } from "react-router-dom";
 
 import "./productDetailList.css";
 
 export const ProductDetailList = ({ token }) => {
+    // grab the id from the url
   const { id } = useParams();
-
+// set up the initial state for product
   const [product, setProduct] = useState({});
+// set up the initial state for reviews
   const [reviews, setReviews] = useState([]);
+// set up the initial state for current user profile
   const [currentUserProfile, setCurrentUserProfile] = useState({});
+// set up the initial state for showing the review form
   const [showCreateForm, setShowCreateForm] = useState(false); // State for toggling the review form
+  // set up initial state for new review we will be creating
   const [newReview, setNewReview] = useState({
     rating: 0,
     review: "",
     product: id,
     profile: 0,
   });
-
+// listening for a change in the token, get the current user profile and update the state
   useEffect(() => {
     getCurrentUserProfile(token).then((userProfile) => {
       setCurrentUserProfile(userProfile);
     });
   }, [token]);
-
+// on inital render of the page, get the product by id and update the state
   useEffect(() => {
     getProductById(id).then((productData) => {
       setProduct(productData);
     });
   }, []);
-
+// on inital render of the page, get the reviews for the product 
   useEffect(() => {
     getCurrentProductReviews();
   }, []);
-
+// function to get the reviews for the product
   const getCurrentProductReviews = () => {
     getProductReviews(id).then((productData) => {
       setReviews(productData);
     });
   };
-
+// function to post the new review to the API
   const handleSaveButton = (event) => {
     event.preventDefault();
     const newReviewObject = {
@@ -79,7 +85,9 @@ export const ProductDetailList = ({ token }) => {
             alt="product image"
           />
           <div className="product__price">${product.price}0</div>
-          <div className="product__link">{product.link}</div>
+          <Link className="product__link" to={product.link}>
+            Buy Now
+          </Link>
           <div className="product__product_type">
             {product.product_type?.label}
           </div>
@@ -106,6 +114,7 @@ export const ProductDetailList = ({ token }) => {
                 </div>
                 {review.profile?.id === currentUserProfile.id && (
                   <button
+                    className="category-button"
                     onClick={() =>
                       deleteProductReview(review.id).then(() =>
                         getCurrentProductReviews()
@@ -118,7 +127,11 @@ export const ProductDetailList = ({ token }) => {
               </div>
             ))
           )}
-          <button onClick={() => setShowCreateForm(!showCreateForm)}>
+          <button
+            className="category-button"
+            id="add-review-button"
+            onClick={() => setShowCreateForm(!showCreateForm)}
+          >
             Add a review
           </button>
           {showCreateForm && (
@@ -148,7 +161,9 @@ export const ProductDetailList = ({ token }) => {
                     }
                   />
                 </label>
-                <button type="submit">Submit Review</button>
+                <button type="submit" className="category-button">
+                  Submit Review
+                </button>
               </form>
             </div>
           )}

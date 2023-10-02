@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../../managers/AuthManager";
 import "./login.css";
+import logo from "./makeup-logo.png";
 
 export const Login = ({ setToken, setAdmin }) => {
   const username = useRef();
@@ -43,7 +44,7 @@ export const Login = ({ setToken, setAdmin }) => {
   return (
     <section className="columns is-centered">
       <form className="column is-two-thirds" onSubmit={handleLogin}>
-        <h1 className="title">Makeup-Finder</h1>
+        <img className="title" src={logo}></img>
         <p className="subtitle">Please sign in</p>
 
         <div className="field">

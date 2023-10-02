@@ -28,7 +28,7 @@ export const UserTipList = ({ token }) => {
   return (
     <>
       <div className="tip-list-header">
-        <h1 className="header-tips">
+        <h1 className="header-tips" id="user-greeting">
           {" "}
           {CurrentProfile.User?.first_name}'s Tips!{" "}
         </h1>

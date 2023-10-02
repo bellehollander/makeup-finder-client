@@ -1,118 +1,118 @@
-/* Profile.css */
-
-/* Style for the main profileForm container */
-.profileForm {
-  display: flex; /* Use flexbox to arrange choices and preferences side by side */
-  justify-content: space-between; /* Add space between the two sections */
-  max-width: 800px; /* Adjust the max width as needed */
-  margin: 0 auto; /* Center the form horizontally */
+.makeup-preferences-container {
+  display: flex;
+  justify-content: space-evenly;
   padding: 20px;
-  padding: 20px;
-  background-color: lavenderblush;
-  border-radius: 8px;
-  box-shadow: 0 0 10px 5px #ff1493; /* Gold glowing shadow */
-  border: none;
   font-family: "Bungee Inline", cursive;
   font-family: "Shrikhand", cursive;
+  border-radius: 8px;
 }
 
-/* Style for the choices section */
-.profileForm__choices {
-  flex: 1; /* Allow this section to grow and take available space */
-  margin-right: 20px; /* Add some space between choices and preferences */
+.categories {
+  flex: 1;
+  background-color: lavenderblush;
+  padding: 20px;
+  border-radius: 10px;
+  margin-right: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px 5px #ff1493;
 }
 
-/* Style for the preferences section */
-.profileForm__preferences {
-  flex: 1; /* Allow this section to grow and take available space */
+.categories h2 {
+  color: #ff1493;
 }
 
-.profileForm h1 {
-  font-size: 24px;
-  color: #ff1493; /* Pink color for headings */
-  margin-top: 0;
-  text-align: center;
-}
-
-.profileForm h2 {
-  font-size: 20px;
-  color: #ff1493; /* Pink color for subheadings */
-  margin-top: 10px;
-}
-
-.form-group {
-  margin-bottom: 20px;
-}
-
-.form-group label {
-  font-size: 16px;
-  color: #333; /* Dark gray color for labels */
-  display: block;
-  margin-bottom: 5px;
-}
-
-.form-control {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border-radius: 4px;
-}
-
-button {
-  background-color: #ff1493; /* Pink color for buttons */
-  color: #fff;
-  border: none;
-  border-radius: 16px;
-  padding: 10px 20px;
+.category-button {
+  list-style: none;
+  margin-bottom: 10px;
   cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s;
-  margin-top: 10px;
+  padding: 10px;
+  background-color: #ff69b4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  margin-right: 30px;
 }
 
-button:hover {
-  background-color: lavenderblush; /* Darker pink color on hover */
-  color: black;
+.category-button.selected {
+  background-color: #ff1493;
 }
 
-ul {
+.makeup-preferences {
+  flex: 1;
+  padding: 20px;
+  background-color: lavenderblush;
+  border-radius: 10px;
+  margin-right: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px 5px #ff1493;
+}
+
+.makeup-preferences h2 {
+  color: #ff1493;
+}
+
+.makeup-preferences ul {
   list-style: none;
   padding: 0;
 }
 
-ul li {
-  font-size: 16px;
-  color: #333;
+.makeup-preferences li {
   display: flex;
   align-items: center;
+  justify-content: left;
   margin-bottom: 10px;
+  background-color: lavenderblush;
+  padding: 10px;
+  border-radius: 5px;
+  color: #ff1493;
 }
 
-ul li img {
-  margin-left: 10px;
-  max-width: 50px;
-  border-radius: 70px;
+.makeup-preferences img {
+  max-width: 70px;
+  margin-right: 10px;
 }
 
-.no-preferences {
-  color: #ff6b81; /* Pink color for messages */
+.makeup-preferences button {
+  background-color: #ff69b4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
-.profileForm__makeup-prefs {
-  flex: 1; /* Take up remaining space */
+
+.create-form {
+  flex: 1;
   padding: 20px;
   background-color: lavenderblush;
-
+  border-radius: 10px;
   border-radius: 8px;
-  border: none;
-  font-family: "Bungee Inline", cursive;
-  font-family: "Shrikhand", cursive;
+  box-shadow: 0 0 10px 5px #ff1493;
 }
 
-/* Adjust the width of the makeup preferences selection dropdown */
-.form-group {
-  flex: 1; /* Take up half of the form */
-  margin-bottom: 20px;
+.create-form h2 {
+  color: #ff1493;
 }
-.profileForm fieldset {
-  border: 1px solid black; /* Pink border around the fieldset */
+
+.create-button {
+  background-color: #ff69b4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.create-button:hover {
+  background-color: #ff1493;
+}
+.create-header {
+  color: #ff1493;
+  margin-bottom: 10px;
+}
+.prefrence-image {
+  display: flex;
+  max-width: 70px;
+
+  flex-wrap: nowrap;
 }

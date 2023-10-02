@@ -20,6 +20,11 @@
   width: 100%; /* Adjust the width as needed */
   background-color: lavenderblush;
   text-align: center;
+  box-shadow: 0 0 10px 5px #ff1493;
+  position: relative;
+}
+.product-card:hover {
+  box-shadow: 0 0 10px 5px #ff1493;
 }
 .product-header {
   color: black;
@@ -85,7 +90,7 @@
 /* WishList.css */
 
 .cart-total {
-  background-color: #fce4ec; /* Light pink color */
+  background-color: lavenderblush; /* Light pink color */
   border: 1px solid #ccc;
   padding: 20px; /* Smaller padding */
   margin-top: 10px; /* Smaller margin-top */
@@ -95,6 +100,9 @@
   width: fit-content;
   height: fit-content;
   border-radius: 5px;
+  box-shadow: 0 0 10px 1px #ff1493;
+  font-family: "Bungee Inline", cursive;
+  font-family: "Shrikhand", cursive;
 }
 
 .cart-total h3 {
@@ -113,4 +121,43 @@
   color: black;
   font-family: "Bungee Inline", cursive;
   font-family: "Shrikhand", cursive;
+}
+
+.create-product-link {
+  margin-bottom: 10px;
+  cursor: pointer;
+  padding: 10px;
+  background-color: #ff69b4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+}
+/* Add this CSS to your ProductList.css file */
+
+.makeup-pref {
+  /* Position the makeup preference info at the bottom of the product card */
+  position: absolute;
+  bottom: 10px; /* Adjust the value to control the distance from the bottom */
+  left: 10px; /* Adjust the value to control the distance from the left */
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.prefrence-image {
+  /* Style for the makeup preference image */
+  width: 30px; /* Adjust the width as needed */
+  height: 30px; /* Adjust the height as needed */
+  margin-right: 5px; /* Add some spacing between the image and label */
+}
+
+.makeup-pref-label {
+  /* Style for the makeup preference label */
+  font-size: 14px; /* Adjust the font size as needed */
+  font-weight: bold; /* Make the label bold */
+}
+#user-greeting {
+  color: black;
 }

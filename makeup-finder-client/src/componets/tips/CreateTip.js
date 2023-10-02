@@ -59,17 +59,19 @@ export const CreateTips = () => {
 
   return (
     <>
-      <form className="tipForm">
-        <h2 className="tipForm__title">New Tip</h2>
+      <form className="edit-product-form">
+        <h2 className="edit-product-form__title">New Tip</h2>
         <fieldset>
           <div className="form-group">
-            <label htmlFor="label">Tip Label:</label>
+            <label htmlFor="label" className="edit-product-label">
+              Tip Label:
+            </label>
             <input
               type="text"
               id="label"
               required
               autoFocus
-              className="form-control"
+              className="edit-product-input"
               placeholder="Tip Label"
               value={tip.label}
               onChange={handleControlledInputChange}
@@ -78,13 +80,15 @@ export const CreateTips = () => {
         </fieldset>
         <fieldset>
           <div className="form-group">
-            <label htmlFor="description">Tip Description:</label>
+            <label htmlFor="description" className="edit-product-label">
+              Tip Description:
+            </label>
             <input
               type="text"
               id="description"
               required
               autoFocus
-              className="form-control"
+              className="edit-product-input"
               placeholder="Tip Description"
               value={tip.description}
               onChange={handleControlledInputChange}
@@ -93,12 +97,14 @@ export const CreateTips = () => {
         </fieldset>
         <fieldset>
           <div className="form-group">
-            <label htmlFor="makeup_skill">Tip Skill Level:</label>
+            <label htmlFor="makeup_skill" className="edit-product-label">
+              Tip Skill Level:
+            </label>
             <select
               value={tip.makeup_skill}
               name="makeup_skill"
               id="makeup_skill"
-              className="form-control"
+              className="edit-product-input"
               onChange={handleControlledInputChange}
             >
               <option value="0">Select a Skill Level</option>
@@ -112,12 +118,14 @@ export const CreateTips = () => {
         </fieldset>
         <fieldset>
           <div className="form-group">
-            <label htmlFor="image">Tip Image:</label>
+            <label htmlFor="image" className="edit-product-label">
+              Tip Image:
+            </label>
             <input
               type="text"
               id="image"
               autoFocus
-              className="form-control"
+              className="edit-product-input"
               placeholder="Tip Image"
               value={tip.image}
               onChange={handleControlledInputChange}

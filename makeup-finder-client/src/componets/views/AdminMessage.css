@@ -1,0 +1,32 @@
+/* AdminMessage.css */
+
+/* Style the container */
+.admin-message-container {
+  text-align: center;
+  padding: 40px;
+  background-color: #fff; /* White background color */
+
+  margin: 20px auto;
+}
+
+.header-title-admin {
+  font-size: 3rem; /* Larger font size for header title */
+  color: black; /* Pink color for header title */
+  margin-bottom: 20px; /* More spacing below the header title */
+  font-family: "Bungee Inline", cursive;
+  font-family: "Shrikhand", cursive;
+  margin-top: -30px;
+}
+
+/* Style the header subtitle */
+.header-subtitle {
+  font-size: 1.5rem; /* Larger font size for subtitle */
+  color: #333; /* Dark gray color for subtitle */
+  margin-bottom: 20px; /* More spacing below the subtitle */
+}
+
+/* Style the sparkle image */
+.sparkle-image {
+  max-width: 80px; /* Slightly larger sparkle image */
+  margin-top: 20px; /* More spacing above the sparkle image */
+}

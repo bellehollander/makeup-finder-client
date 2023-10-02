@@ -5,13 +5,12 @@
 }
 
 /* Style the "Makeup-Finder" title */
-.title.is-4 {
-  color: #ff1493; /* Pink text color */
-  font-weight: bold;
-  text-align: center;
-  margin: 0;
-  font-family: "Bungee Inline", cursive;
-  font-family: "Shrikhand", cursive;
+.logo-navigation {
+  max-height: 400px; /* Adjust the maximum height as needed */
+  display: flex; /* Ensure it's a block element */
+  margin-right: 20px;
+
+  width: 400px; /* Auto width to maintain aspect ratio */
 }
 /* want no background color for the title when hovering */
 
@@ -61,11 +60,6 @@
   color: white;
 }
 
-/* Change the logout button color on hover */
-.button.is-outlined:hover {
-  color: white; /* White text color on hover */
-}
-
 /* Center the links */
 .navbar-start {
   flex: 1; /* Grow to fill available space */
@@ -76,4 +70,8 @@
 /* Push the logout button to the end */
 .navbar-end {
   margin-left: auto;
+}
+
+#login {
+  margin-top: 10px;
 }
